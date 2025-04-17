@@ -32,7 +32,7 @@ dependencies = [
     "omero-py",
     "ezomero",
     "bioio",
-    "bioio-tifffile"
+    "bioio_ome_tiff",
 ]
 
 [project.optional-dependencies]

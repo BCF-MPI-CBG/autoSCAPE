@@ -7,6 +7,8 @@ https://napari.org/stable/plugins/building_a_plugin/guides.html#readers
 """
 
 import numpy as np
+from pathlib import Path
+import os
 
 
 def napari_get_reader(path):
@@ -30,7 +32,7 @@ def napari_get_reader(path):
         path = path[0]
 
     # if we know we cannot read the file, we immediately return None.
-    if not path.endswith(".npy"):
+    if not os.path.isdir(path):
         return None
 
     # otherwise we return the *function* that can read ``path``.
@@ -59,15 +61,73 @@ def reader_function(path):
         layer. Both "meta", and "layer_type" are optional. napari will
         default to layer_type=="image" if not provided
     """
-    # handle both a string and a list of strings
-    paths = [path] if isinstance(path, str) else path
-    # load all files into array
-    arrays = [np.load(_path) for _path in paths]
-    # stack arrays into single array
-    data = np.squeeze(np.stack(arrays))
+    from bioio import BioImage
+    import bioio_ome_tiff
 
-    # optional kwargs for the corresponding viewer.add_* method
-    add_kwargs = {}
+    tif_files = [os.path.join(path, f) for f in os.listdir(path) if f.endswith('.tif')]
+    metadata_file = os.path.join(path, 'metadata')
+
+    # get metadata from first image
+    Image = BioImage(os.path.abspath(os.path.join(path, tif_files[0])), reader=bioio_ome_tiff.Reader)
+
+
+    # stack arrays into single array
+    data = np.squeeze([BioImage(f, reader=bioio_ome_tiff.Reader).data for f in tif_files])
+    metadata = _load_pos_file(metadata_file)
+
+    folder_name = Path(path).stem
+    grid_col = int(folder_name.split('_')[-2])
+    grid_row = int(folder_name.split('_')[-1])
+    tile_metadata = _get_tile_metadata(metadata, grid_col, grid_row)
+
+    scale = [Image.physical_pixel_sizes.Z, Image.physical_pixel_sizes.Y, Image.physical_pixel_sizes.X]
+    scale = [s if s is not None else 10 for s in scale]
+    translate = (float(tile_metadata['DEVICES'][1]['X']),
+                 -float(tile_metadata['DEVICES'][0]['Y']),
+                 float(tile_metadata['DEVICES'][0]['X']))
+
+    add_kwargs = {
+        'scale': scale,
+        'translate': translate,
+        'metadata': tile_metadata,
+        'blending': 'additive'
+    }
 
     layer_type = "image"  # optional, default is "image"
     return [(data, add_kwargs, layer_type)]
+
+
+def _load_pos_file(file_path: Path) -> dict:
+    import json
+    # Read the file content
+    with open(file_path, 'r') as file:
+        json_data = file.read()
+
+    # Parse the JSON data
+    json_data = json.loads(json_data)
+
+    return json_data
+
+
+def _get_tile_metadata(data: dict, grid_col: int, grid_row: int) -> dict:
+    """
+    Get the tile metadata for a specific grid column and row of a pos file
+
+    Parameters
+    ----------
+    data : dict
+        The parsed JSON data from the pos file.
+    grid_col : int
+        The grid column of the tile.
+    grid_row : int
+        The grid row of the tile.
+
+    Returns
+    -------
+    dict
+        The tile metadata for the specified grid column and row.
+    """
+    for position in data['POSITIONS']:
+        if position['GRID_COL'] == grid_col and position['GRID_ROW'] == grid_row:
+            return position
+    return None
