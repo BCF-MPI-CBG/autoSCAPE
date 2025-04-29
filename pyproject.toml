@@ -29,7 +29,6 @@ dependencies = [
     "magicgui",
     "qtpy",
     "scikit-image",
-    "omero-py",
     "bioio",
     "bioio_ome_tiff",
 ]
