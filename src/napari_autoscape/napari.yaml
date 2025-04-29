@@ -18,18 +18,9 @@ contributions:
     - id: napari-autoscape.make_sample_data
       python_name: napari_autoscape._sample_data:make_sample_data
       title: Load sample data from autoSCAPE
-    - id: napari-autoscape.make_container_widget
-      python_name: napari_autoscape:ImageThreshold
-      title: Make threshold Container widget
-    - id: napari-autoscape.make_magic_widget
-      python_name: napari_autoscape:threshold_magic_widget
-      title: Make threshold magic widget
-    - id: napari-autoscape.make_function_widget
-      python_name: napari_autoscape:threshold_autogenerate_widget
-      title: Make threshold function widget
-    - id: napari-autoscape.make_qwidget
-      python_name: napari_autoscape:ExampleQWidget
-      title: Make example QWidget
+    - id: napari-autoscape.tesselate
+      python_name: napari_autoscape:tesellate_area
+      title: Tesellate acquisition area
   readers:
     - command: napari-autoscape.get_reader
       accepts_directories: true
@@ -46,12 +37,6 @@ contributions:
       display_name: autoSCAPE
       key: unique_id.1
   widgets:
-    - command: napari-autoscape.make_container_widget
-      display_name: Container Threshold
-    - command: napari-autoscape.make_magic_widget
-      display_name: Magic Threshold
-    - command: napari-autoscape.make_function_widget
+    - command: napari-autoscape.tesselate
+      display_name: Tesselate Acquisition Area
       autogenerate: true
-      display_name: Autogenerate Threshold
-    - command: napari-autoscape.make_qwidget
-      display_name: Example QWidget
