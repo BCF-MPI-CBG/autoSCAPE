@@ -12,9 +12,6 @@ contributions:
     - id: napari-autoscape.write_single_shape
       python_name: napari_autoscape._writer:write_single_shape
       title: Save image data with autoSCAPE
-    - id: napari-autoscape.make_sample_data
-      python_name: napari_autoscape._sample_data:make_sample_data
-      title: Load sample data from autoSCAPE
     - id: napari-autoscape.tesselate
       python_name: napari_autoscape:tesellate_area
       title: Tesellate acquisition area
@@ -26,10 +23,6 @@ contributions:
     - command: napari-autoscape.write_single_shape
       layer_types: ['shapes']
       filename_extensions: ['.pos']
-  sample_data:
-    - command: napari-autoscape.make_sample_data
-      display_name: autoSCAPE
-      key: unique_id.1
   widgets:
     - command: napari-autoscape.tesselate
       display_name: Tesselate Acquisition Area
