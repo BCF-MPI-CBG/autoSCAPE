@@ -9,11 +9,8 @@ contributions:
     - id: napari-autoscape.get_reader
       python_name: napari_autoscape._reader:napari_get_reader
       title: Open data with autoSCAPE
-    - id: napari-autoscape.write_multiple
-      python_name: napari_autoscape._writer:write_multiple
-      title: Save multi-layer data with autoSCAPE
-    - id: napari-autoscape.write_single_image
-      python_name: napari_autoscape._writer:write_single_image
+    - id: napari-autoscape.write_single_shape
+      python_name: napari_autoscape._writer:write_single_shape
       title: Save image data with autoSCAPE
     - id: napari-autoscape.make_sample_data
       python_name: napari_autoscape._sample_data:make_sample_data
@@ -26,12 +23,9 @@ contributions:
       accepts_directories: true
       filename_patterns: ['*.tif']
   writers:
-    - command: napari-autoscape.write_multiple
-      layer_types: ['image*','labels*']
-      filename_extensions: []
-    - command: napari-autoscape.write_single_image
-      layer_types: ['image']
-      filename_extensions: ['.npy']
+    - command: napari-autoscape.write_single_shape
+      layer_types: ['shapes']
+      filename_extensions: ['.pos']
   sample_data:
     - command: napari-autoscape.make_sample_data
       display_name: autoSCAPE
