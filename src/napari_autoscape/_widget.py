@@ -42,6 +42,7 @@ def tesellate_area(
     fov_size_y = fov_size_z / scale[1]
 
     z = rectangle_data[0][0]
+    center_z = z * scale[0]  # z coordinate is constant
 
     min_x = rectangle_data[:, 2].min() - fov_size_x / 2
     max_x = rectangle_data[:, 2].max() + fov_size_x / 2
@@ -60,13 +61,11 @@ def tesellate_area(
             # Calculate the center of the tile
             center_x = min_x + i * (fov_size_x - overlap_x) + fov_size_x / 2
             center_y = min_y + j * (fov_size_y - overlap_x) + fov_size_y / 2
-            center_z = z * scale[0]  # z coordinate is constant
 
             x1 = center_x - fov_size_x / 2
             x2 = center_x + fov_size_x / 2
             y1 = center_y - fov_size_y / 2
             y2 = center_y + fov_size_y / 2
-            z = center_z
 
             # Create a list of corner coordinates
             corners = np.asarray([
@@ -88,7 +87,6 @@ def tesellate_area(
     tuple_data = (
         tiles, 
         {
-            'shape_type': 'rectangle',
             'edge_color': 'blue',
             'face_color': 'transparent',
             'edge_width': 25,
