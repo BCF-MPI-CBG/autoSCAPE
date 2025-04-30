@@ -4,16 +4,13 @@ except ImportError:
     __version__ = "unknown"
 
 from ._reader import napari_get_reader
-from ._sample_data import make_sample_data
 from ._widget import (
     tesellate_area
 )
-from ._writer import write_multiple, write_single_image
+from ._writer import write_single_shape
 
 __all__ = (
     "napari_get_reader",
-    "write_single_image",
-    "write_multiple",
-    "make_sample_data",
+    "write_single_shape",
     "tesellate_area",
 )
