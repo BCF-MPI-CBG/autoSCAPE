@@ -14,7 +14,7 @@ contributions:
       title: Save image data with autoSCAPE
     - id: napari-autoscape.tesselate
       python_name: napari_autoscape:tesellate_area
-      title: Tesellate acquisition area
+      title: Create tile grid
   readers:
     - command: napari-autoscape.get_reader
       accepts_directories: true
@@ -25,5 +25,5 @@ contributions:
       filename_extensions: ['.pos']
   widgets:
     - command: napari-autoscape.tesselate
-      display_name: Tesselate Acquisition Area
+      display_name: Create tile grid
       autogenerate: true

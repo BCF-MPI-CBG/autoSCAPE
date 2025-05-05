@@ -9,14 +9,16 @@ Replace code below according to your needs.
 
 from __future__ import annotations
 
+import json
 from collections.abc import Sequence
 from typing import TYPE_CHECKING, Any, Union
-import json
+
 import numpy as np
 
 if TYPE_CHECKING:
     DataType = Union[Any, Sequence[Any]]
     FullLayerData = tuple[DataType, dict, str]
+
 
 def write_single_shape(path: str, data: Any, meta: dict) -> list[str]:
     """
@@ -37,6 +39,13 @@ def write_single_shape(path: str, data: Any, meta: dict) -> list[str]:
     """
 
     centers = np.stack([pos.mean(axis=0) for pos in data])
+    centers[:, 1] *= -1
+
+    heigths = [pos.max(axis=0)[1] - pos.min(axis=0)[1] for pos in data]
+    widths = [pos.max(axis=0)[2] - pos.min(axis=0)[2] for pos in data]
+
+    centers[:, 1] += np.mean(heigths) / 2
+    centers[:, 2] -= np.mean(widths) / 2
     config = _generate_pos_config(centers)
 
     # Save to a JSON file
@@ -44,7 +53,7 @@ def write_single_shape(path: str, data: Any, meta: dict) -> list[str]:
         json.dump(config, f, indent=4)
 
 
-def _generate_pos_config(positions: "napari.types.PointsData"):
+def _generate_pos_config(positions: "napari.types.PointsData"):  # noqa F821
     """
     Generate a configuration dictionary for the positions.
 
@@ -59,8 +68,8 @@ def _generate_pos_config(positions: "napari.types.PointsData"):
     """
 
     # Extract unique x and y values to determine grid structure
-    unique_x = sorted(set(pos[2] for pos in positions))
-    unique_y = sorted(set(pos[1] for pos in positions))
+    unique_x = sorted(set(pos[2] for pos in positions))  # noqa C401
+    unique_y = sorted(set(pos[1] for pos in positions))  # noqa C401
 
     # Create a mapping from x and y values to grid columns and rows
     x_to_col = {x: col for col, x in enumerate(unique_x)}
@@ -70,7 +79,7 @@ def _generate_pos_config(positions: "napari.types.PointsData"):
     config = {
         "VERSION": 3,
         "ID": "Micro-Manager XY-position list",
-        "POSITIONS": []
+        "POSITIONS": [],
     }
 
     # Populate the positions
@@ -85,25 +94,25 @@ def _generate_pos_config(positions: "napari.types.PointsData"):
                     "AXES": 2,
                     "Y": float(y),
                     "X": float(x),
-                    "Z": 0
+                    "Z": 0,
                 },
                 {
                     "DEVICE": "ZStage:Z:32",
                     "AXES": 1,
                     "Y": 0,
-                    "X": 1955.9799999999998,
-                    "Z": float(z)
-                }
+                    "X": float(z),
+                    "Z": 0,
+                },
             ],
             "PROPERTIES": {
                 "OverlapUmX": "138.2400",
                 "OverlapUmY": "138.2400",
                 "OverlapPixelsX": "384",
-                "OverlapPixelsY": "384"
+                "OverlapPixelsY": "384",
             },
             "DEFAULT_Z_STAGE": "ZStage:Z:32",
             "LABEL": f"1-Pos_{x_to_col[x]:03d}_{y_to_row[y]:03d}",
-            "DEFAULT_XY_STAGE": "XYStage:XY:31"
+            "DEFAULT_XY_STAGE": "XYStage:XY:31",
         }
         config["POSITIONS"].append(position_entry)
 
