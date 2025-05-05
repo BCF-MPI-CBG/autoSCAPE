@@ -93,11 +93,17 @@ def reader_function(path):
         Image.physical_pixel_sizes.X,
     ]
     scale = [s if s is not None else 10 for s in scale]
-    translate = (
+    translate = [
         float(tile_metadata["DeviceCoordinatesUm"]["ZStage:Z:32"][0]),
         -float(tile_metadata["DeviceCoordinatesUm"]["XYStage:XY:31"][1]),
         float(tile_metadata["DeviceCoordinatesUm"]["XYStage:XY:31"][0]),
-    )
+    ]
+
+    error_x = 139 * scale[2]
+    error_y = 128 * scale[1]
+
+    translate[1] = translate[1] - grid_row * error_y
+    translate[2] = translate[2] + grid_col * error_x
 
     add_kwargs = {
         "scale": scale,
