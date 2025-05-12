@@ -40,7 +40,7 @@ def napari_get_reader(path):
     return reader_function
 
 
-def reader_function(path):
+def reader_function(path, downscale: int = 1):
     """Take a path or list of paths and return a list of LayerData tuples.
 
     Readers are expected to return data as a list of tuples, where each tuple
@@ -79,7 +79,7 @@ def reader_function(path):
     # stack arrays into single array
     data = np.squeeze(
         [BioImage(f, reader=bioio_tifffile.Reader).data for f in tif_files]
-    )
+    )[:, ::downscale, ::downscale]
     metadata = _load_pos_file(metadata_file)
 
     folder_name = Path(path).stem
@@ -89,8 +89,8 @@ def reader_function(path):
 
     scale = [
         Image.physical_pixel_sizes.Z,
-        Image.physical_pixel_sizes.Y,
-        Image.physical_pixel_sizes.X,
+        Image.physical_pixel_sizes.Y * downscale,
+        Image.physical_pixel_sizes.X * downscale,
     ]
     scale = [s if s is not None else 10 for s in scale]
     translate = [
