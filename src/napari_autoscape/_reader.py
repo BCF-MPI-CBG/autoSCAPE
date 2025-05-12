@@ -99,12 +99,6 @@ def reader_function(path):
         float(tile_metadata["DeviceCoordinatesUm"]["XYStage:XY:31"][0]),
     ]
 
-    error_x = 139 * scale[2]
-    error_y = 128 * scale[1]
-
-    translate[1] = translate[1] - grid_row * error_y
-    translate[2] = translate[2] + grid_col * error_x
-
     add_kwargs = {
         "scale": scale,
         "translate": translate,
