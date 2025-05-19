@@ -4,7 +4,7 @@ if TYPE_CHECKING:
     import napari
 
 import numpy as np
-from napari.layers import Shapes
+from napari.layers import Shapes, Points
 
 
 def tesellate_area(
@@ -93,3 +93,75 @@ def tesellate_area(
     )
 
     return tuple_data
+
+
+def fit_focus_plane(
+        focus_points: Points,
+        query_locations: Shapes,
+        order: int = 1) -> Shapes:
+    
+    positions = focus_points.data * focus_points.scale
+    query_points = np.stack([np.mean(loc, axis=0) for loc in query_locations.data])
+
+    # Fit focus plane
+    poly_model = _fit_polynomial_surface(positions, order)
+    z_pred = poly_model(query_points[:, 2], query_points[:, 1])
+
+    new_locations = []
+
+    for i, loc in enumerate(query_locations.data):
+        # Create a new location with the predicted z value
+        new_loc = loc.copy()
+        new_loc[:, 0] = z_pred[i]
+        new_locations.append(new_loc)
+
+    return Shapes(
+        data=new_locations,
+        features={'focus_positions': z_pred},
+        name="Focus Plane",
+        edge_color="focus_positions",
+        face_color="transparent",
+        edge_width=5,
+    )
+
+
+def _fit_polynomial_surface(points, order):
+    """
+    Fit a polynomial surface to a set of 3D points.
+
+    Parameters:
+    points (np.ndarray): Nx3 array of points with format [z, y, x].
+    order (int): Order of the polynomial.
+
+    Returns:
+    Polynomial: A polynomial model that approximates z given x and y.
+    """
+    # Extract x, y, z coordinates
+    z = points[:, 0]
+    y = points[:, 1]
+    x = points[:, 2]
+
+    # Create a grid of polynomial terms
+    xx, yy = np.meshgrid(np.arange(order + 1), np.arange(order + 1))
+    xx = xx.ravel()
+    yy = yy.ravel()
+
+    # Filter terms where the sum of the exponents is <= order
+    mask = (xx + yy) <= order
+    xx = xx[mask]
+    yy = yy[mask]
+
+    # Create the design matrix
+    X = np.column_stack([(x**xx_i) * (y**yy_i) for xx_i, yy_i in zip(xx, yy)])
+
+    # Solve for the coefficients
+    coeffs, _, _, _ = np.linalg.lstsq(X, z, rcond=None)
+
+    # Create a polynomial model
+    def poly_model(x, y):
+        z_pred = np.zeros_like(x)
+        for coef, xx_i, yy_i in zip(coeffs, xx, yy):
+            z_pred += coef * (x**xx_i) * (y**yy_i)
+        return z_pred
+
+    return poly_model

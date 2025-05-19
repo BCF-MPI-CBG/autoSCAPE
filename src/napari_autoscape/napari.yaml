@@ -7,7 +7,7 @@ categories: ["Annotation", "Segmentation", "Acquisition"]
 contributions:
   commands:
     - id: napari-autoscape.get_reader
-      python_name: napari_autoscape._reader:napari_get_reader
+      python_name: napari_autoscape:napari_get_reader
       title: Open data with autoSCAPE
     - id: napari-autoscape.write_single_shape
       python_name: napari_autoscape._writer:write_single_shape
@@ -15,6 +15,9 @@ contributions:
     - id: napari-autoscape.tesselate
       python_name: napari_autoscape:tesellate_area
       title: Create tile grid
+    - id: napari-autoscape.detect_focusplane
+      python_name: napari_autoscape:fit_focus_plane
+      title: Fit focus plane
   readers:
     - command: napari-autoscape.get_reader
       accepts_directories: true
@@ -26,4 +29,7 @@ contributions:
   widgets:
     - command: napari-autoscape.tesselate
       display_name: Create tile grid
+      autogenerate: true
+    - command: napari-autoscape.detect_focusplane
+      display_name: Fit focus plane
       autogenerate: true
