@@ -30,7 +30,7 @@ dependencies = [
     "qtpy",
     "scikit-image",
     "bioio",
-    "bioio_ome_tiff",
+    "bioio_tifffile",
 ]
 
 [project.optional-dependencies]
