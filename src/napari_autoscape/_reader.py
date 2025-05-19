@@ -103,7 +103,7 @@ def reader_function(path, downscale: int = 1):
         "scale": scale,
         "translate": translate,
         "metadata": tile_metadata,
-        "blending": "additive",
+        "blending": "translucent",
     }
 
     layer_type = "image"  # optional, default is "image"
