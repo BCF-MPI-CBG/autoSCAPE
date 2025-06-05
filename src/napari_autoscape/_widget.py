@@ -98,7 +98,7 @@ def tesellate_area(
 def fit_focus_plane(
         focus_points: Points,
         query_locations: Shapes,
-        order: int = 1) -> Shapes:
+        order: int = 1) -> 'napari.types.LayerDataTuple':
     
     positions = focus_points.data * focus_points.scale
     query_points = np.stack([np.mean(loc, axis=0) for loc in query_locations.data])
@@ -115,13 +115,16 @@ def fit_focus_plane(
         new_loc[:, 0] = z_pred[i]
         new_locations.append(new_loc)
 
-    return Shapes(
-        data=new_locations,
-        features={'focus_positions': z_pred},
-        name="Focus Plane",
-        edge_color="focus_positions",
-        face_color="transparent",
-        edge_width=5,
+    return (
+        new_locations,
+        {
+            "features": {'focus_positions': z_pred},
+            "name": f"Focus Plane (order={order})",
+            "edge_color": "focus_positions",
+            "face_color": "transparent",
+            "edge_width": 5,
+        },
+        "shapes",
     )
 
 
