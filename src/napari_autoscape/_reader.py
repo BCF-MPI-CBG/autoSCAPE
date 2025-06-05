@@ -83,9 +83,16 @@ def reader_function(path, downscale: int = 1):
     metadata = _load_pos_file(metadata_file)
 
     folder_name = Path(path).stem
-    grid_col = int(folder_name.split("_")[-2])
-    grid_row = int(folder_name.split("_")[-1])
-    tile_metadata = _get_tile_metadata(metadata, grid_col, grid_row)
+
+    # check if the folder name indicates a grid
+    if is_grid(folder_name):
+        grid_col = int(folder_name.split("_")[-2])
+        grid_row = int(folder_name.split("_")[-1])
+        tile_metadata = _get_tile_metadata(metadata, grid_col_row=(grid_col, grid_row))
+    else:
+        # if not a grid, we assume the first tile in the metadata
+        index = int(folder_name.replace("Pos", ""))
+        tile_metadata = _get_tile_metadata(metadata, index=index)
 
     scale = [
         Image.physical_pixel_sizes.Z,
@@ -93,10 +100,19 @@ def reader_function(path, downscale: int = 1):
         Image.physical_pixel_sizes.X * downscale,
     ]
     scale = [s if s is not None else 10 for s in scale]
+    
+    # Calculate translation based on the metadata assuming that the position is centered
+    # on the tile
+    translate_z = float(tile_metadata["DeviceCoordinatesUm"]["ZStage:Z:32"][0])
+    translate_y = -float(tile_metadata["DeviceCoordinatesUm"]["XYStage:XY:31"][1])
+    translate_x = float(tile_metadata["DeviceCoordinatesUm"]["XYStage:XY:31"][0])
+    size_z = data.shape[0] * scale[0]
+    size_y = data.shape[1] * scale[1]
+    size_x = data.shape[2] * scale[2]
     translate = [
-        float(tile_metadata["DeviceCoordinatesUm"]["ZStage:Z:32"][0]),
-        -float(tile_metadata["DeviceCoordinatesUm"]["XYStage:XY:31"][1]),
-        float(tile_metadata["DeviceCoordinatesUm"]["XYStage:XY:31"][0]),
+        translate_z - size_z / 2,
+        translate_y - size_y / 2,
+        translate_x - size_x / 2,
     ]
 
     add_kwargs = {
@@ -108,6 +124,27 @@ def reader_function(path, downscale: int = 1):
 
     layer_type = "image"  # optional, default is "image"
     return [(data, add_kwargs, layer_type)]
+
+
+def is_grid(name_string: str) -> bool:
+    """
+    Check if the given string is a grid name.
+
+    Parameters
+    ----------
+    name_string : str
+        The string to check.
+
+    Returns
+    -------
+    bool
+        True if the string is a grid name, False otherwise.
+    """
+    # pattern for grid is "X-Pos_CCC_RRR" where CCC is the column and RRR is the row
+    import re
+    pattern = r"\d{1}-Pos_\d{3}_\d{3}$"
+    match = re.match(pattern, name_string)
+    return match is not None
 
 
 def _load_pos_file(file_path: Path) -> dict:
@@ -123,7 +160,7 @@ def _load_pos_file(file_path: Path) -> dict:
     return json_data
 
 
-def _get_tile_metadata(data: dict, grid_col: int, grid_row: int) -> dict:
+def _get_tile_metadata(data: dict, grid_col_row: tuple = None, index: int = None) -> dict:
     """
     Get the tile metadata for a specific grid column and row of a pos file
 
@@ -141,10 +178,18 @@ def _get_tile_metadata(data: dict, grid_col: int, grid_row: int) -> dict:
     dict
         The tile metadata for the specified grid column and row.
     """
-    for position in data["Summary"]["InitialPositionList"]:
-        if (
-            position["GridColumnIndex"] == grid_col
-            and position["GridRowIndex"] == grid_row
-        ):
-            return position
+
+    if grid_col_row is not None:
+        grid_col, grid_row = grid_col_row
+        for position in data["Summary"]["InitialPositionList"]:
+            if (
+                position["GridColumnIndex"] == grid_col
+                and position["GridRowIndex"] == grid_row
+            ):
+                return position
+            
+    elif index is not None:
+        for i, position in enumerate(data["Summary"]["InitialPositionList"]):
+            if i == index:
+                return position
     return None
