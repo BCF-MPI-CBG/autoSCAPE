@@ -41,11 +41,11 @@ def write_single_shape(path: str, data: Any, meta: dict) -> list[str]:
     centers = np.stack([pos.mean(axis=0) for pos in data])
     centers[:, 1] *= -1
 
-    heigths = [pos.max(axis=0)[1] - pos.min(axis=0)[1] for pos in data]
-    widths = [pos.max(axis=0)[2] - pos.min(axis=0)[2] for pos in data]
+    #    heigths = [pos.max(axis=0)[1] - pos.min(axis=0)[1] for pos in data]
+    #    widths = [pos.max(axis=0)[2] - pos.min(axis=0)[2] for pos in data]
 
-    centers[:, 1] += np.mean(heigths) / 2
-    centers[:, 2] -= np.mean(widths) / 2
+    #    centers[:, 1] += np.mean(heigths) / 2
+    #    centers[:, 2] -= np.mean(widths) / 2
     config = _generate_pos_config(centers)
 
     # Save to a JSON file
