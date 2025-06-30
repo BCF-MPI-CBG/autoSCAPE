@@ -76,10 +76,14 @@ def reader_function(path, downscale: int = 1):
         reader=bioio_tifffile.Reader,
     )
 
-    # stack arrays into single array
+    # stack arrays into single array and make sure array is 3d
     data = np.squeeze(
         [BioImage(f, reader=bioio_tifffile.Reader).data for f in tif_files]
-    )[:, ::downscale, ::downscale]
+    )
+    if len(data.shape) < 3:
+        data = data[None, :]
+    data = data[:, ::downscale, ::downscale]
+
     metadata = _load_pos_file(metadata_file)
 
     folder_name = Path(path).stem
@@ -88,7 +92,9 @@ def reader_function(path, downscale: int = 1):
     if is_grid(folder_name):
         grid_col = int(folder_name.split("_")[-2])
         grid_row = int(folder_name.split("_")[-1])
-        tile_metadata = _get_tile_metadata(metadata, grid_col_row=(grid_col, grid_row))
+        tile_metadata = _get_tile_metadata(
+            metadata, grid_col_row=(grid_col, grid_row)
+        )
     else:
         # if not a grid, we assume the first tile in the metadata
         index = int(folder_name.replace("Pos", ""))
@@ -99,13 +105,17 @@ def reader_function(path, downscale: int = 1):
         Image.physical_pixel_sizes.Y * downscale,
         Image.physical_pixel_sizes.X * downscale,
     ]
-    scale = [s if s is not None else 10 for s in scale]
-    
+    scale = [s if s is not None else 3 for s in scale]
+
     # Calculate translation based on the metadata assuming that the position is centered
     # on the tile
     translate_z = float(tile_metadata["DeviceCoordinatesUm"]["ZStage:Z:32"][0])
-    translate_y = -float(tile_metadata["DeviceCoordinatesUm"]["XYStage:XY:31"][1])
-    translate_x = float(tile_metadata["DeviceCoordinatesUm"]["XYStage:XY:31"][0])
+    translate_y = -float(
+        tile_metadata["DeviceCoordinatesUm"]["XYStage:XY:31"][1]
+    )
+    translate_x = float(
+        tile_metadata["DeviceCoordinatesUm"]["XYStage:XY:31"][0]
+    )
     size_z = data.shape[0] * scale[0]
     size_y = data.shape[1] * scale[1]
     size_x = data.shape[2] * scale[2]
@@ -142,6 +152,7 @@ def is_grid(name_string: str) -> bool:
     """
     # pattern for grid is "X-Pos_CCC_RRR" where CCC is the column and RRR is the row
     import re
+
     pattern = r"\d{1}-Pos_\d{3}_\d{3}$"
     match = re.match(pattern, name_string)
     return match is not None
@@ -160,7 +171,9 @@ def _load_pos_file(file_path: Path) -> dict:
     return json_data
 
 
-def _get_tile_metadata(data: dict, grid_col_row: tuple = None, index: int = None) -> dict:
+def _get_tile_metadata(
+    data: dict, grid_col_row: tuple = None, index: int = None
+) -> dict:
     """
     Get the tile metadata for a specific grid column and row of a pos file
 
@@ -187,7 +200,7 @@ def _get_tile_metadata(data: dict, grid_col_row: tuple = None, index: int = None
                 and position["GridRowIndex"] == grid_row
             ):
                 return position
-            
+
     elif index is not None:
         for i, position in enumerate(data["Summary"]["InitialPositionList"]):
             if i == index:
