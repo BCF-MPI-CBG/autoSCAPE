@@ -18,6 +18,9 @@ contributions:
     - id: napari-autoscape.detect_focusplane
       python_name: napari_autoscape:fit_focus_plane
       title: Fit focus plane
+    - id: napari-autoscape.create_well_grid
+      python_name: napari_autoscape:create_well_grid
+      title: Create well grid
   readers:
     - command: napari-autoscape.get_reader
       accepts_directories: true
@@ -32,4 +35,7 @@ contributions:
       autogenerate: true
     - command: napari-autoscape.detect_focusplane
       display_name: Fit focus plane
+      autogenerate: true
+    - command: napari-autoscape.create_well_grid
+      display_name: Create well grid
       autogenerate: true

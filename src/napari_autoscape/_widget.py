@@ -168,3 +168,148 @@ def _fit_polynomial_surface(points, order):
         return z_pred
 
     return poly_model
+
+
+def create_well_grid(
+        fiducial_layer: Points,
+        n_columns: int = 28,
+        n_rows: int = 32,
+        microwell_diameter_um: float = 200
+        ) -> Shapes:
+    """
+    Create a grid of wells based on fiducial positions.
+    
+    Parameters:
+        fiducial_positions: Coordinates of fiducials.
+        ncolumns: Number of columns in the microwell plate.
+        nrows: Number of rows in the microwell plate.
+        microwell_size_um: Size of a single microwell in micrometers.
+        
+    Returns:
+        Well positions as a numpy array.
+    """
+    from scipy.spatial import distance, KDTree
+    import pandas as pd
+
+    # Calculate row and column vectors
+    fiducials = fiducial_layer.data * fiducial_layer.scale
+    fiducial_indeces = [0, 1, 2, 3]
+
+    # Distance between fiducials and set radius
+    dist_matrix = distance.cdist(fiducials, fiducials, 'euclidean')
+
+    max_dist = np.max(dist_matrix[dist_matrix > 0])
+    radius = 9/10 * max_dist
+    tree = KDTree(fiducials)
+
+    # find point with 4 neighbors
+    fiducial_ids = {}
+
+    for i in range(len(fiducials)):
+        neighbors = tree.query_ball_point(fiducials[i], radius)
+        if len(neighbors) >= 4:
+            fiducial_ids['center'] = i
+            break
+
+    # find south fiducial to center
+    distances = dist_matrix[fiducial_ids['center']]
+    fiducial_ids['south'] = np.argwhere(distances == sorted(distances)[1])[0][0]
+    fiducial_indeces = [index for index in fiducial_indeces if index not in fiducial_ids.values()]
+
+    # find fiductial on the west-hand side of the vector from south to center
+    south_fiducial_coords = fiducials[fiducial_ids['south']]
+    center_fiducial_coords = fiducials[fiducial_ids['center']]
+
+    vector1 = (south_fiducial_coords - center_fiducial_coords)
+    vector2 = (fiducials[fiducial_indeces[0]] - center_fiducial_coords)
+    angle = np.arccos(np.dot(vector1, vector2) / (np.linalg.norm(vector1) * np.linalg.norm(vector2))) / np.pi * 180
+
+    if angle < 180:
+        fiducial_ids['west'] = fiducial_indeces[0]
+        fiducial_ids['east'] = fiducial_indeces[1]
+    else:
+        fiducial_ids['west'] = fiducial_indeces[1]
+        fiducial_ids['east'] = fiducial_indeces[0]
+
+    fiducials = {key: fiducials[fiducial_ids[key]] for key in fiducial_ids.keys()}
+
+    # # there are four possible orientations of the fiducials: 0, 90, 180, 270 degrees
+    # if fiducials['west'][1] < fiducials['center'][1] and fiducials['east'][1] > fiducials['center'][1]:
+    #     orientation = 90
+    # elif fiducials['center'][1] < fiducials['west'][1] and fiducials['center'][1] < fiducials['east'][1]:
+    #     orientation = 180
+    # elif fiducials['center'][1] > fiducials['west'][1] and fiducials['center'][1] > fiducials['east'][1]:
+    #     orientation = 0
+    # elif fiducials['west'][1] > fiducials['center'][1] and fiducials['east'][1] < fiducials['center'][1]:
+    #     orientation = 270
+    
+    row_vector = (fiducials['east'] - fiducials['west']) / (n_columns - 1)
+
+    col_vector1 = _rotate_vector(row_vector[1:], -120)
+    col_vector1 = np.insert(col_vector1, 0, 0)
+    col_vector2 = _rotate_vector(row_vector[1:], -60)
+    col_vector2 = np.insert(col_vector2, 0, 0)
+
+    row_vector1 = np.stack([fiducials['west'], row_vector])
+    col_vector1 = np.stack([fiducials['west'], col_vector1])
+    col_vector2 = np.stack([fiducials['west'], col_vector2])
+
+    well_positions = []
+    rows = []
+    cols = []
+    for j in range(n_rows):
+
+        if j % 4 == 1 or j % 4 == 3:
+            delta = col_vector1
+        else:
+            delta = np.zeros_like(col_vector1)
+
+        starting_position = fiducials['west'] + j//2 * col_vector1[1:] + j//2 * col_vector2[1:] + delta[1:]
+        for i in range(n_columns):
+            well_positions.append(starting_position + i * row_vector1[1:])
+            rows.append(j)
+            cols.append(i)
+
+    well_positions = np.stack(well_positions).squeeze()
+    hexagons = [_hexagon_around_point(p, size=microwell_diameter_um/2) for p in well_positions]
+
+    features = pd.DataFrame({
+        'row': rows,
+        'column': cols,
+    })
+
+    text = {
+        'string': 'WELL ({row}, {column})',
+        'anchor:': 'center',
+        'color': 'red',
+    }
+
+    return Shapes(
+        hexagons,
+        edge_color='red',
+        face_color='transparent',
+        name='Well grid',
+        features=features,
+        shape_type='polygon',
+        text=text,
+        edge_width=2)
+
+
+def _rotate_vector(vector, angle):
+    """Rotate a vector by a given angle in degree."""
+    angle = np.deg2rad(angle)  # Convert angle to radians
+    R = np.array([[np.cos(angle), -np.sin(angle)],
+                [np.sin(angle), np.cos(angle)]])
+    return R @ vector    
+
+def _hexagon_around_point(point, size):
+    """Generate coordinates of a hexagon around a point."""
+    # consider that points are zyx and disregard z
+    z_value = point[0]  # Save z coordinate 
+    point = point[1:]  # Take only x and y coordinates
+    angles = np.linspace(0, 2 * np.pi, 7)[:-1] + np.pi / 6  # 6 angles for hexagon, offset by 30 degrees
+    points =  point + size * np.column_stack((np.cos(angles), np.sin(angles)))
+
+    # put z back in
+    points = np.insert(points, 0, z_value, axis=1)  # Insert z coordinate back
+    return points
