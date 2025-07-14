@@ -129,7 +129,7 @@ def reader_function(path, downscale: int = 1):
         "scale": scale,
         "translate": translate,
         "metadata": tile_metadata,
-        "blending": "translucent",
+        "blending": "additive",
     }
 
     layer_type = "image"  # optional, default is "image"
@@ -159,16 +159,11 @@ def is_grid(name_string: str) -> bool:
 
 
 def _load_pos_file(file_path: Path) -> dict:
-    import json
+    import yaml
 
     # Read the file content
     with open(file_path) as file:
-        json_data = file.read()
-
-    # Parse the JSON data
-    json_data = json.loads(json_data)
-
-    return json_data
+        return yaml.safe_load(file)
 
 
 def _get_tile_metadata(
