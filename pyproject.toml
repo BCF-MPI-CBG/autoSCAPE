@@ -25,13 +25,13 @@ classifiers = [
 ]
 requires-python = ">=3.10"
 dependencies = [
+    "napari-ome-zarr",
+    "ultralytics",
     "numpy",
     "scipy",
     "magicgui",
     "qtpy",
     "scikit-image",
-    "bioio",
-    "bioio_tifffile",
 ]
 
 [project.optional-dependencies]
