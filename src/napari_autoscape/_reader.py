@@ -40,7 +40,7 @@ def napari_get_reader(path):
     return reader_function
 
 
-def reader_function(path, downscale: int = 1):
+def reader_function(path):
     """Take a path or list of paths and return a list of LayerData tuples.
 
     Readers are expected to return data as a list of tuples, where each tuple
@@ -62,147 +62,145 @@ def reader_function(path, downscale: int = 1):
         layer. Both "meta", and "layer_type" are optional. napari will
         default to layer_type=="image" if not provided
     """
-    import bioio_tifffile
-    from bioio import BioImage
+    from napari_ome_zarr._reader import napari_get_reader as ome_zarr_reader
+
+    if path.endswith('.ome.zarr'):
+        return None
+
+    ome_zarr_file = Path(path).parent / ('converted_' + Path(path).stem + '.ome.zarr')
+    if not os.path.exists(ome_zarr_file):
+        ome_zarr_file = convert_to_ome_zarr(path)
+
+    layer_data = ome_zarr_reader(ome_zarr_file)()
+
+    # set napari view options
+    layer_data[0][1]['blending'] = 'additive'
+    layer_data[0][1]['depiction'] = 'plane'
+
+    plane_parameters = {
+        'normal': (1, 0, 0),
+        'thickness': 10,
+    }
+    layer_data[0][1]['plane'] = plane_parameters
+    layer_data[0][1]['colormap'] = 'gray'
+    return layer_data
+
+
+def convert_to_ome_zarr(path):
+
+    from skimage import io
+    import yaml
+    import dask.array as da
+    import ome_zarr
+    from ome_zarr.writer import write_multiscale
+    import zarr
+
+    # like numpy.mean, but maintains dtype
+    def mean_dtype(arr, **kwargs):
+        return np.mean(arr, **kwargs).astype(arr.dtype)
 
     tif_files = [
         os.path.join(path, f) for f in os.listdir(path) if f.endswith(".tif")
     ]
-    metadata_file = os.path.join(path, "metadata.txt")
 
-    # get metadata from first image
-    Image = BioImage(
-        os.path.abspath(os.path.join(path, tif_files[0])),
-        reader=bioio_tifffile.Reader,
-    )
+    metadata_file = os.path.join(path, "metadata.txt")
+    with open(metadata_file, 'r') as f:
+        metadata = yaml.safe_load(f)['Summary']
+
+    # index positionlist by label
+    positionlist = metadata['InitialPositionList']
+    positionlist = {position['Label']: position for position in positionlist}
+    position = positionlist[Path(path).stem]
 
     # stack arrays into single array and make sure array is 3d
-    data = np.squeeze(
-        [BioImage(f, reader=bioio_tifffile.Reader).data for f in tif_files]
+    array = da.stack([
+        da.from_array(io.imread(f)) for f in tif_files],
     )
-    if len(data.shape) < 3:
-        data = data[None, :]
-    data = data[:, ::downscale, ::downscale]
 
-    metadata = _load_pos_file(metadata_file)
-
-    folder_name = Path(path).stem
-
-    # check if the folder name indicates a grid
-    if is_grid(folder_name):
-        grid_col = int(folder_name.split("_")[-2])
-        grid_row = int(folder_name.split("_")[-1])
-        tile_metadata = _get_tile_metadata(
-            metadata, grid_col_row=(grid_col, grid_row)
+    # make multiscale
+    scales = [array]
+    for _ in range(3):
+        scales.append(
+            da.coarsen(mean_dtype, scales[-1], {scales[-1].ndim - 2: 2, scales[-1].ndim - 1: 2}, trim_excess=True)
         )
-    else:
-        # if not a grid, we assume the first tile in the metadata
-        index = int(folder_name.replace("Pos", ""))
-        tile_metadata = _get_tile_metadata(metadata, index=index)
 
-    scale = [
-        Image.physical_pixel_sizes.Z,
-        Image.physical_pixel_sizes.Y * downscale,
-        Image.physical_pixel_sizes.X * downscale,
+    z_scale = metadata['z-step_um'] if metadata['z-step_um'] != 0 else 1.0
+    y_scale = metadata['PixelSize_um']
+    x_scale = metadata['PixelSize_um']
+
+
+    size_z = np.round(array.shape[0] * z_scale)
+    size_y = np.round(array.shape[1] * y_scale)
+    size_x = np.round(array.shape[2] * x_scale)
+
+    coordtfs = [
+        [
+            {
+                'type': 'scale',
+                'scale': [z_scale * (2 ** i), y_scale * (2 ** i), x_scale * (2 ** i)],
+                },
+            {
+                'type': 'translation',
+                'translation': [
+                    float(
+                        position["DeviceCoordinatesUm"]["ZStage:Z:32"][0]
+                    ) - size_z // 2,
+                    -float(
+                        position["DeviceCoordinatesUm"]["XYStage:XY:31"][1]
+                    ) - size_y // 2,
+                    float(
+                       position["DeviceCoordinatesUm"]["XYStage:XY:31"][0]
+                    ) - size_x // 2,],
+                }
+        ]
+        for i in range(4)
     ]
-    scale = [s if s is not None else 3 for s in scale]
 
-    # Calculate translation based on the metadata assuming that the position is centered
-    # on the tile
-    translate_z = float(tile_metadata["DeviceCoordinatesUm"]["ZStage:Z:32"][0])
-    translate_y = -float(
-        tile_metadata["DeviceCoordinatesUm"]["XYStage:XY:31"][1]
-    )
-    translate_x = float(
-        tile_metadata["DeviceCoordinatesUm"]["XYStage:XY:31"][0]
-    )
-    size_z = data.shape[0] * scale[0]
-    size_y = data.shape[1] * scale[1]
-    size_x = data.shape[2] * scale[2]
-    translate = [
-        translate_z - size_z / 2,
-        translate_y - size_y / 2,
-        translate_x - size_x / 2,
+    axes = [
+        {
+            'name': 'z',
+            'type': 'space',
+            'unit': 'micrometer'
+            },
+        {
+            'name': 'y',
+            'type': 'space',
+            'unit': 'micrometer'
+            },
+        {
+            'name': 'x',
+            'type': 'space',
+            'unit': 'micrometer'
+            }
     ]
 
-    add_kwargs = {
-        "scale": scale,
-        "translate": translate,
-        "metadata": tile_metadata,
-        "blending": "translucent",
+    ome = {
+        "channels": [
+            {
+                "active": True,
+                "color": "ffffff",
+                "label": Path(path).stem,
+                "window": {
+                    "start": 0,
+                    "end": 2**16 // 2,
+                    "min": 0,
+                    "max": 2**16
+                }
+            }
+        ]
     }
 
-    layer_type = "image"  # optional, default is "image"
-    return [(data, add_kwargs, layer_type)]
+    target = Path(path).parent / ('converted_' + Path(path).stem + '.ome.zarr')
+    store = ome_zarr.io.parse_url(target, mode="w").store
+    root = zarr.group(store=store)
 
+    write_multiscale(
+        pyramid=scales,
+        group=root,
+        axes=axes,
+        coordinate_transformations=coordtfs,
+        name=Path(path).stem,
+    )
+    root.attrs['omero'] = ome
 
-def is_grid(name_string: str) -> bool:
-    """
-    Check if the given string is a grid name.
-
-    Parameters
-    ----------
-    name_string : str
-        The string to check.
-
-    Returns
-    -------
-    bool
-        True if the string is a grid name, False otherwise.
-    """
-    # pattern for grid is "X-Pos_CCC_RRR" where CCC is the column and RRR is the row
-    import re
-
-    pattern = r"\d{1}-Pos_\d{3}_\d{3}$"
-    match = re.match(pattern, name_string)
-    return match is not None
-
-
-def _load_pos_file(file_path: Path) -> dict:
-    import json
-
-    # Read the file content
-    with open(file_path) as file:
-        json_data = file.read()
-
-    # Parse the JSON data
-    json_data = json.loads(json_data)
-
-    return json_data
-
-
-def _get_tile_metadata(
-    data: dict, grid_col_row: tuple = None, index: int = None
-) -> dict:
-    """
-    Get the tile metadata for a specific grid column and row of a pos file
-
-    Parameters
-    ----------
-    data : dict
-        The parsed JSON data from the pos file.
-    grid_col : int
-        The grid column of the tile.
-    grid_row : int
-        The grid row of the tile.
-
-    Returns
-    -------
-    dict
-        The tile metadata for the specified grid column and row.
-    """
-
-    if grid_col_row is not None:
-        grid_col, grid_row = grid_col_row
-        for position in data["Summary"]["InitialPositionList"]:
-            if (
-                position["GridColumnIndex"] == grid_col
-                and position["GridRowIndex"] == grid_row
-            ):
-                return position
-
-    elif index is not None:
-        for i, position in enumerate(data["Summary"]["InitialPositionList"]):
-            if i == index:
-                return position
-    return None
+    return target
