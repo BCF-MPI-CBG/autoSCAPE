@@ -24,7 +24,9 @@ var/
 .installed.cfg
 *.egg
 
+# YOLO
 runs/
+*.pt
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
