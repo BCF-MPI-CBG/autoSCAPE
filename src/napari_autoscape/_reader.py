@@ -64,36 +64,38 @@ def reader_function(path):
     """
     from napari_ome_zarr._reader import napari_get_reader as ome_zarr_reader
 
-    if path.endswith('.ome.zarr'):
+    if path.endswith(".ome.zarr"):
         return None
 
-    ome_zarr_file = Path(path).parent / ('converted_' + Path(path).stem + '.ome.zarr')
+    ome_zarr_file = Path(path).parent / (
+        "converted_" + Path(path).stem + ".ome.zarr"
+    )
     if not os.path.exists(ome_zarr_file):
         ome_zarr_file = convert_to_ome_zarr(path)
 
     layer_data = ome_zarr_reader(ome_zarr_file)()
 
     # set napari view options
-    layer_data[0][1]['blending'] = 'additive'
-    layer_data[0][1]['depiction'] = 'plane'
+    layer_data[0][1]["blending"] = "additive"
+    layer_data[0][1]["depiction"] = "plane"
 
     plane_parameters = {
-        'normal': (1, 0, 0),
-        'thickness': 10,
+        "normal": (1, 0, 0),
+        "thickness": 10,
     }
-    layer_data[0][1]['plane'] = plane_parameters
-    layer_data[0][1]['colormap'] = 'gray'
+    layer_data[0][1]["plane"] = plane_parameters
+    layer_data[0][1]["colormap"] = "gray"
     return layer_data
 
 
 def convert_to_ome_zarr(path):
 
-    from skimage import io
-    import yaml
     import dask.array as da
     import ome_zarr
-    from ome_zarr.writer import write_multiscale
+    import yaml
     import zarr
+    from ome_zarr.writer import write_multiscale
+    from skimage import io
 
     # like numpy.mean, but maintains dtype
     def mean_dtype(arr, **kwargs):
@@ -104,30 +106,34 @@ def convert_to_ome_zarr(path):
     ]
 
     metadata_file = os.path.join(path, "metadata.txt")
-    with open(metadata_file, 'r') as f:
-        metadata = yaml.safe_load(f)['Summary']
+    with open(metadata_file) as f:
+        metadata = yaml.safe_load(f)["Summary"]
 
     # index positionlist by label
-    positionlist = metadata['InitialPositionList']
-    positionlist = {position['Label']: position for position in positionlist}
+    positionlist = metadata["InitialPositionList"]
+    positionlist = {position["Label"]: position for position in positionlist}
     position = positionlist[Path(path).stem]
 
     # stack arrays into single array and make sure array is 3d
-    array = da.stack([
-        da.from_array(io.imread(f)) for f in tif_files],
+    array = da.stack(
+        [da.from_array(io.imread(f)) for f in tif_files],
     )
 
     # make multiscale
     scales = [array]
     for _ in range(3):
         scales.append(
-            da.coarsen(mean_dtype, scales[-1], {scales[-1].ndim - 2: 2, scales[-1].ndim - 1: 2}, trim_excess=True)
+            da.coarsen(
+                mean_dtype,
+                scales[-1],
+                {scales[-1].ndim - 2: 2, scales[-1].ndim - 1: 2},
+                trim_excess=True,
+            )
         )
 
-    z_scale = metadata['z-step_um'] if metadata['z-step_um'] != 0 else 1.0
-    y_scale = metadata['PixelSize_um']
-    x_scale = metadata['PixelSize_um']
-
+    z_scale = metadata["z-step_um"] if metadata["z-step_um"] != 0 else 1.0
+    y_scale = metadata["PixelSize_um"]
+    x_scale = metadata["PixelSize_um"]
 
     size_z = np.round(array.shape[0] * z_scale)
     size_y = np.round(array.shape[1] * y_scale)
@@ -136,42 +142,32 @@ def convert_to_ome_zarr(path):
     coordtfs = [
         [
             {
-                'type': 'scale',
-                'scale': [z_scale * (2 ** i), y_scale * (2 ** i), x_scale * (2 ** i)],
-                },
+                "type": "scale",
+                "scale": [
+                    z_scale * (2**i),
+                    y_scale * (2**i),
+                    x_scale * (2**i),
+                ],
+            },
             {
-                'type': 'translation',
-                'translation': [
-                    float(
-                        position["DeviceCoordinatesUm"]["ZStage:Z:32"][0]
-                    ) - size_z // 2,
-                    -float(
-                        position["DeviceCoordinatesUm"]["XYStage:XY:31"][1]
-                    ) - size_y // 2,
-                    float(
-                       position["DeviceCoordinatesUm"]["XYStage:XY:31"][0]
-                    ) - size_x // 2,],
-                }
+                "type": "translation",
+                "translation": [
+                    float(position["DeviceCoordinatesUm"]["ZStage:Z:32"][0])
+                    - size_z // 2,
+                    -float(position["DeviceCoordinatesUm"]["XYStage:XY:31"][1])
+                    - size_y // 2,
+                    float(position["DeviceCoordinatesUm"]["XYStage:XY:31"][0])
+                    - size_x // 2,
+                ],
+            },
         ]
         for i in range(4)
     ]
 
     axes = [
-        {
-            'name': 'z',
-            'type': 'space',
-            'unit': 'micrometer'
-            },
-        {
-            'name': 'y',
-            'type': 'space',
-            'unit': 'micrometer'
-            },
-        {
-            'name': 'x',
-            'type': 'space',
-            'unit': 'micrometer'
-            }
+        {"name": "z", "type": "space", "unit": "micrometer"},
+        {"name": "y", "type": "space", "unit": "micrometer"},
+        {"name": "x", "type": "space", "unit": "micrometer"},
     ]
 
     ome = {
@@ -184,13 +180,13 @@ def convert_to_ome_zarr(path):
                     "start": 0,
                     "end": 2**16 // 2,
                     "min": 0,
-                    "max": 2**16
-                }
+                    "max": 2**16,
+                },
             }
         ]
     }
 
-    target = Path(path).parent / ('converted_' + Path(path).stem + '.ome.zarr')
+    target = Path(path).parent / ("converted_" + Path(path).stem + ".ome.zarr")
     store = ome_zarr.io.parse_url(target, mode="w").store
     root = zarr.group(store=store)
 
@@ -201,6 +197,6 @@ def convert_to_ome_zarr(path):
         coordinate_transformations=coordtfs,
         name=Path(path).stem,
     )
-    root.attrs['omero'] = ome
+    root.attrs["omero"] = ome
 
     return target
