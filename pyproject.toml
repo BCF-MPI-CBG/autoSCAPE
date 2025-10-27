@@ -26,14 +26,15 @@ classifiers = [
 requires-python = ">=3.10"
 dependencies = [
     "napari-ome-zarr",
-    "ultralytics",
     "multiscale-spatial-image",
     "multiview-stitcher",
+    "ngff-zarr",
     "spatial-image",
     "numpy",
     "scipy",
     "magicgui",
     "qtpy",
+    "pyqt5",
     "scikit-image",
 ]
 
