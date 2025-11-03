@@ -38,6 +38,16 @@ def write_single_shape(path: str, data: Any, meta: dict) -> list[str]:
         A list of paths that were written.
     """
 
+    ndim = meta['ndim']
+    if not np.all(meta['scale'] == 1):
+        new_shapes = []
+        for shape in data:
+            new_shape = shape.copy()
+            for dim in range(ndim):
+                new_shape[:, dim] *= meta['scale'][dim]
+            new_shapes.append(new_shape)
+        data = new_shapes
+
     centers = np.stack([pos.mean(axis=0) for pos in data])
     centers[:, 1] *= -1
 
