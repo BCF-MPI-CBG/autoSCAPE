@@ -91,11 +91,10 @@ def reader_function(path):
 def convert_to_ome_zarr(path):
 
     import dask.array as da
-    import ome_zarr
     import yaml
     import zarr
-    from ome_zarr.writer import write_multiscale
     from skimage import io
+    import ngff_zarr as nz
 
     # like numpy.mean, but maintains dtype
     def mean_dtype(arr, **kwargs):
@@ -119,58 +118,15 @@ def convert_to_ome_zarr(path):
         [da.from_array(io.imread(f)) for f in tif_files],
     )
 
-    # make multiscale
-    scales = [array]
-    for _ in range(3):
-        scales.append(
-            da.coarsen(
-                mean_dtype,
-                scales[-1],
-                {scales[-1].ndim - 2: 2, scales[-1].ndim - 1: 2},
-                trim_excess=True,
-            )
-        )
-
     z_scale = metadata["z-step_um"] if metadata["z-step_um"] != 0 else 1.0
     y_scale = metadata["PixelSize_um"]
     x_scale = metadata["PixelSize_um"]
 
-    size_z = np.round(array.shape[0] * z_scale)
-    size_y = np.round(array.shape[1] * y_scale)
-    size_x = np.round(array.shape[2] * x_scale)
+    size_y = array.shape[1] * y_scale
+    size_x = array.shape[2] * x_scale
+    size_z = array.shape[0] * z_scale
 
-    coordtfs = [
-        [
-            {
-                "type": "scale",
-                "scale": [
-                    z_scale * (2**i),
-                    y_scale * (2**i),
-                    x_scale * (2**i),
-                ],
-            },
-            {
-                "type": "translation",
-                "translation": [
-                    float(position["DeviceCoordinatesUm"]["ZStage:Z:32"][0])
-                    - size_z // 2,
-                    -float(position["DeviceCoordinatesUm"]["XYStage:XY:31"][1])
-                    - size_y // 2,
-                    float(position["DeviceCoordinatesUm"]["XYStage:XY:31"][0])
-                    - size_x // 2,
-                ],
-            },
-        ]
-        for i in range(4)
-    ]
-
-    axes = [
-        {"name": "z", "type": "space", "unit": "micrometer"},
-        {"name": "y", "type": "space", "unit": "micrometer"},
-        {"name": "x", "type": "space", "unit": "micrometer"},
-    ]
-
-    ome = {
+    omero = {
         "channels": [
             {
                 "active": True,
@@ -186,17 +142,21 @@ def convert_to_ome_zarr(path):
         ]
     }
 
-    target = Path(path).parent / ("converted_" + Path(path).stem + ".ome.zarr")
-    store = ome_zarr.io.parse_url(target, mode="w").store
-    root = zarr.group(store=store)
-
-    write_multiscale(
-        pyramid=scales,
-        group=root,
-        axes=axes,
-        coordinate_transformations=coordtfs,
-        name=Path(path).stem,
+    ngff_image = nz.to_ngff_image(
+        data=array,
+        scale={'z': z_scale, 'y': y_scale, 'x': x_scale},
+        translation={
+            'z': float(position["DeviceCoordinatesUm"]["ZStage:Z:32"][0]) - size_z // 2,
+            'y': -float(position["DeviceCoordinatesUm"]["XYStage:XY:31"][1]) - size_y // 2,
+            'x': float(position["DeviceCoordinatesUm"]["XYStage:XY:31"][0]) - size_x // 2,
+        }
     )
-    root.attrs["omero"] = ome
+
+    ngff_ms = nz.to_multiscales(
+        ngff_image
+    )
+
+    target = Path(path).parent / ("converted_" + Path(path).stem + ".ome.zarr")
+    nz.to_ngff_zarr(store=target, multiscales=ngff_ms, version='0.5')
 
     return target
