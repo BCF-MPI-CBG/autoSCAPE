@@ -25,7 +25,8 @@ classifiers = [
 ]
 requires-python = ">=3.10"
 dependencies = [
-    "napari-ome-zarr",
+    "napari-ome-zarr @ git+https://github.com/will-moore/napari-ome-zarr.git@v0.6.dev3",
+    "ome-zarr @ git+https://github.com/jo-mueller/ome-zarr-py.git@introduce-image-class",
     "multiscale-spatial-image",
     "multiview-stitcher",
     "ngff-zarr",
