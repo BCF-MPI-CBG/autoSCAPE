@@ -27,7 +27,8 @@ requires-python = ">=3.10"
 dependencies = [
     "napari-ome-zarr @ git+https://github.com/will-moore/napari-ome-zarr.git@v0.6.dev3",
     "ome-zarr @ git+https://github.com/jo-mueller/ome-zarr-py.git@introduce-image-class",
-    "multiscale-spatial-image",
+    "ome-zarr-models @ git+https://github.com/ome-zarr-models/ome-zarr-models-py.git@rfc5",
+    "multiscale-spatial-image >=2.1.0",
     "multiview-stitcher",
     "ngff-zarr",
     "spatial-image",
