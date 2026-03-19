@@ -6,9 +6,6 @@ visibility: public
 categories: ["Annotation", "Segmentation", "Acquisition"]
 contributions:
   commands:
-    - id: napari-autoscape.get_reader
-      python_name: napari_autoscape:napari_get_reader
-      title: Open data with autoSCAPE
     - id: napari-autoscape.write_single_shape
       python_name: napari_autoscape._writer:write_single_shape
       title: Save image data with autoSCAPE
@@ -21,10 +18,6 @@ contributions:
     - id: napari-autoscape.create_well_grid
       python_name: napari_autoscape:create_well_grid
       title: Create well grid
-  readers:
-    - command: napari-autoscape.get_reader
-      accepts_directories: true
-      filename_patterns: ['*.tif']
   writers:
     - command: napari-autoscape.write_single_shape
       layer_types: ['shapes']
