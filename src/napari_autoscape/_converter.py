@@ -95,7 +95,10 @@ def convert_tiles_to_stitched_ome_zarr(path: str):
     import glob
     import yaml
     import tqdm
+    import numpy as np
     from dask_image import imread
+    from dask import array as da
+    from bffile import BioFile
 
     from multiview_stitcher import msi_utils
     from multiview_stitcher import spatial_image_utils as si_utils
@@ -105,7 +108,7 @@ def convert_tiles_to_stitched_ome_zarr(path: str):
     from ome_zarr_models._v06.coordinate_transforms import Translation, CoordinateSystem, Axis
 
     folders = [os.path.join(path, folder) for folder in os.listdir(path) if os.path.isdir(os.path.join(path, folder))]
-    metadata = yaml.safe_load(open(os.path.join(path, folders[0], 'metadata.txt'), 'r'))['Summary']
+    metadata = yaml.safe_load(open(glob.glob(os.path.join(path, '**', '*metadata.txt'), recursive=True)[0], 'r'))['Summary']
 
     positionlist = metadata['InitialPositionList']
     positionlist = {position['Label']: position for position in positionlist}
@@ -113,15 +116,28 @@ def convert_tiles_to_stitched_ome_zarr(path: str):
     tile_translations = []
     tile_arrays = []
     z_values = []
-    for label, position in tqdm.tqdm(positionlist.items()):
+
+    # check if folder contains images in ome.tif format
+    ome_tif_files = glob.glob(os.path.join(path,'**','*.ome.tif'), recursive=True)
+    if len(ome_tif_files) > 0:
+        print("Found ome.tif files, using BioFile to read them.")
+        bf = BioFile(ome_tif_files[0]).open()
+
+    for idx, (label, position) in tqdm.tqdm(enumerate(positionlist.items()), total=len(positionlist)):
         z_scale = metadata['z-step_um'] if metadata['z-step_um'] != 0 else 1.0
         y_scale = metadata['PixelSize_um']
         x_scale = metadata['PixelSize_um']
 
-        # read single tile as array
-        array = imread.imread(
-            glob.glob(os.path.join(path, label, '*.tif'))[0]
-        )
+        file = glob.glob(os.path.join(path,'*' +  label + '*.tif'))[0]
+        
+        if file.endswith('.ome.tif'):
+            array = da.from_array(np.asarray(bf.as_array(series=idx))).squeeze()
+        else:
+            # read single tile as array
+            array = imread.imread(file)
+
+        while array.ndim < 3:
+            array = array[None, :]
 
         size_z = np.round(array.shape[0] * z_scale)
         size_y = np.round(array.shape[1] * y_scale)
