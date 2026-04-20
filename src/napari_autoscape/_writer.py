@@ -12,12 +12,70 @@ from __future__ import annotations
 import json
 from collections.abc import Sequence
 from typing import TYPE_CHECKING, Any, Union
+from napari_autoscape.models.leica import (
+    StageOverviewRegions,
+    CompoundShape,
+    Point,
+    Vertex
+)
 
 import numpy as np
 
 if TYPE_CHECKING:
     DataType = Union[Any, Sequence[Any]]
     FullLayerData = tuple[DataType, dict, str]
+
+
+def write_single_shape_leica(path: str, data: Any, meta: dict) -> list[Point]:
+    """
+    Write a single shape to a file.
+    Parameters
+    ----------
+    path : str
+        The path to the file to write to.
+    data : Any
+        The data to write.
+    meta : dict
+        The metadata to write.
+
+    Returns
+    -------
+    list[str]
+        A list of paths that were written.
+    """
+
+    ndim = meta['ndim']
+    if not np.all(meta['scale'] == 1):
+        new_shapes = []
+        for shape in data:
+            new_shape = shape.copy()
+            for dim in range(ndim):
+                new_shape[:, dim] *= meta['scale'][dim]
+            new_shapes.append(new_shape)
+        data = new_shapes
+
+    centers = np.stack([pos.mean(axis=0) for pos in data])
+    centers[:, 1] *= -1
+
+    points = []
+    for i, pos in enumerate(centers):
+        if ndim == 3:
+            point = Point(
+                Name=f"Point_{i}",
+                Identifier=meta.name,
+                Verticies=[Vertex(Z = pos[0], Y=pos[1], X=pos[2])]
+            )
+        elif ndim == 2:
+            point = Point(
+                Name=f"Point_{i}",
+                Identifier=meta.name,
+                Verticies=[Vertex(Y=pos[0], X=pos[1])]
+            )
+        
+        
+        points.append(point)
+
+    return points
 
 
 def write_single_shape(path: str, data: Any, meta: dict) -> list[str]:

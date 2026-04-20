@@ -8,8 +8,97 @@ https://napari.org/stable/plugins/building_a_plugin/guides.html#readers
 
 import os
 from pathlib import Path
-
+from bioio import BioImage
 import numpy as np
+import xmltodict
+from napari_autoscape._utils import _find_in_nested_dict
+from ome_zarr import NgffImage, NgffMultiscales
+from multiview_stitcher import spatial_image_utils as si_utils
+from multiview_stitcher import fusion
+
+def convert_leica_composite_to_ngff(filename: str) -> NgffMultiscales:
+    bf = BioImage(filename)
+    basename = Path(filename).stem.split('.')[0]
+
+    if bf.physical_pixel_sizes.Z is None:
+        z_scale = 1
+    else:
+        z_scale = bf.physical_pixel_sizes.Z *1e6
+
+    scale = {
+        "z": z_scale,
+        "y": bf.physical_pixel_sizes.Y *1e6,
+        "x": bf.physical_pixel_sizes.X *1e6
+    }
+
+    axes_units = {
+        "z": "micrometer",
+        "y": "micrometer",
+        "x": "micrometer",
+    }
+    
+    # parse tile metadata
+    metadata_file = os.path.join(Path(filename).parent, "Metadata", f"{basename}.xlif")
+    metadata_dict = xmltodict.parse(open(metadata_file).read())
+    tile_scan_info = _find_in_nested_dict(metadata_dict, '@Name', 'TileScanInfo')[0]["Tile"]
+
+    # n_series= bf.series_count()
+    n_series = len(bf.scenes)
+
+    if n_series > 1:
+        sims = []
+        for idx in range(n_series):
+            bf.set_scene(bf.scenes[idx])
+            dask_image = bf.dask_data
+            # dask_image = bf.to_dask(series=idx)
+            ts_info = tile_scan_info[idx]
+
+            t_z = float(ts_info["@PosZ"]) * 1e6
+            t_y = float(ts_info["@PosY"]) * 1e6
+            t_x = float(ts_info["@PosX"]) * 1e6
+
+            sims.append(
+                si_utils.get_sim_from_array(
+                    dask_image,
+                    dims=["t", "c", "z", "y", "x"],
+                    scale=scale,
+                    translation={"z": t_z, "y": t_y, "x": t_x},
+                    transform_key="stage_metadata",
+                    )
+            )
+
+        image = fusion.fuse(sims, transform_key="stage_metadata", fusion_func=fusion.max_fusion).data
+    else:
+        # image = bf.to_dask(series=0)
+        image = bf.dask_data
+        t_z = float(tile_scan_info["@PosZ"]) * 1e6
+        t_y = float(tile_scan_info["@PosY"]) * 1e6
+        t_x = float(tile_scan_info["@PosX"]) * 1e6
+
+    # coerce to zyx
+    image = image.squeeze()
+    while len(image.shape) < 3:
+        image = image[None, ...]
+
+    ngff_image = NgffImage(
+        image,
+        axes=["z", "y", "x"],
+        scale=scale,
+        axes_units=axes_units,
+        name=basename
+    )
+    ngff_multiscales = NgffMultiscales(
+        image=ngff_image,
+        scale_factors=[
+        {"z": 2, "y": 2, "x": 2},
+        {"z": 4, "y": 4, "x": 4},
+        {"z": 8, "y": 8, "x": 8},
+        {"z": 16, "y": 16, "x": 16},
+        ],
+    )
+
+    return ngff_multiscales
+
 
 def convert_single_tile_to_ome_zarr(path):
 
@@ -104,7 +193,7 @@ def convert_tiles_to_stitched_ome_zarr(path: str):
     from multiview_stitcher import spatial_image_utils as si_utils
     from multiview_stitcher import fusion
 
-    from ome_zarr.image import NgffImage, NgffMultiscales
+    from ome_zarr import NgffImage, NgffMultiscales
     from ome_zarr_models._v06.coordinate_transforms import Translation, CoordinateSystem, Axis
 
     folders = [os.path.join(path, folder) for folder in os.listdir(path) if os.path.isdir(os.path.join(path, folder))]

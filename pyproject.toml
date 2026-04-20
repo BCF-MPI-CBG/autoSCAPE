@@ -35,6 +35,7 @@ dependencies = [
     "qtpy",
     "pyqt5",
     "scikit-image",
+    "dicttoxml"
 ]
 
 [project.optional-dependencies]
