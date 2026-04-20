@@ -1,8 +1,26 @@
-from .leica import Vertex, Point, CompoundShape, StageOverviewRegions
+from .leica import (StageOverviewRegions,
+  	CompoundShape,
+  	Point,
+  	Vertex,
+  	ShapeList,
+  	StackList,
+  	StackEntry,
+  	DefinedRegionEntry,
+  	DefinedRegions,
+    Regions,
+    serialize_to_rgn,
+)
 
 __all__ = [
-    "Vertex",
-    "Point",
     "CompoundShape",
+    "Point",
+    "Vertex",
+    "ShapeList",
+    "StackList",
+    "StackEntry",
+    "DefinedRegionEntry",
+    "DefinedRegions",
+    "Regions",
     "StageOverviewRegions",
+    "serialize_to_rgn",
 ]
