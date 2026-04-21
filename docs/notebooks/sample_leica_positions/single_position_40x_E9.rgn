@@ -1,0 +1,102 @@
+<StageOverviewRegions>
+  <Regions>
+    <ShapeList>
+      <Items>
+        <Item0>
+          <Name>E</Name>
+          <Identifier>edc3dd64-b051-4fbe-c2a0-a67071d08d20</Identifier>
+          <Type>CompoundShape</Type>
+          <Fill>R:1 ,G: 0,B: 0,A: 0</Fill>
+          <Font />
+          <Verticies>
+            <Items />
+          </Verticies>
+          <DecoratorColors>
+            <Items />
+          </DecoratorColors>
+          <ExtendedProperties>
+            <Items />
+          </ExtendedProperties>
+          <Children>
+            <Items>
+              <Item0>
+                <Name>9</Name>
+                <Identifier>e0df7ccd-c540-45f9-df9e-f2e928e95ab1</Identifier>
+                <Type>CompoundShape</Type>
+                <Font />
+                <Verticies>
+                  <Items />
+                </Verticies>
+                <DecoratorColors>
+                  <Items />
+                </DecoratorColors>
+                <ExtendedProperties>
+                  <Items />
+                </ExtendedProperties>
+                <Children>
+                  <Items>
+                    <Item0>
+                      <Number>37</Number>
+                      <Name>P1</Name>
+                      <Tag>P1</Tag>
+                      <Identifier>c3fbf78a-beb7-44f9-8992-86220a926e66</Identifier>
+                      <Type>Point</Type>
+                      <Fill>R:1 ,G: 0,B: 0,A: 0</Fill>
+                      <Font />
+                      <Verticies>
+                        <Items>
+                          <Item0>
+                            <X>0.08412357535</X>
+                            <Y>0.04429895014</Y>
+                          </Item0>
+                        </Items>
+                      </Verticies>
+                      <DecoratorColors>
+                        <Items />
+                      </DecoratorColors>
+                      <ExtendedProperties>
+                        <Items />
+                      </ExtendedProperties>
+                    </Item0>
+                    <Item1>
+                      <Number>39</Number>
+                      <Name>P2</Name>
+                      <Tag>P2</Tag>
+                      <Identifier>555fec2b-8dc2-46de-3488-194293cd484d</Identifier>
+                      <Type>Point</Type>
+                      <Fill>R:1 ,G: 0,B: 0,A: 0</Fill>
+                      <Font />
+                      <Verticies>
+                        <Items>
+                          <Item0>
+                            <X>0.08390902988</X>
+                            <Y>0.04470438372</Y>
+                          </Item0>
+                        </Items>
+                      </Verticies>
+                      <DecoratorColors>
+                        <Items />
+                      </DecoratorColors>
+                      <ExtendedProperties>
+                        <Items />
+                      </ExtendedProperties>
+                    </Item1>
+                  </Items>
+                </Children>
+              </Item0>
+            </Items>
+          </Children>
+        </Item0>
+      </Items>
+      <FillMaskMode>None</FillMaskMode>
+      <VertexUnitMode>Pixels</VertexUnitMode>
+    </ShapeList>
+  </Regions>
+  <DefinedRegions>
+    <Entry Identifier="7acd538d-f2e4-438a-caba-bcb44045f534" HolderRow="0" HolderColumn="0" CarrierIndex="0" ChamberRow="0" ChamberColumn="0" ChamberImageIndex="-1" MosaicRows="0" MosaicColumns="0" />
+  </DefinedRegions>
+  <StackList>
+    <Entry Identifier="555fec2b-8dc2-46de-3488-194293cd484d" Begin="0.0028533294" End="0.0028533294" SectionCount="1" ReferenceX="0.0841074000" ReferenceY="0.0442976000" FocusStabilizerOffset="0.0000000000" FocusStabilizerOffsetFixed="false" StackValid="true" Marked="true" />
+    <Entry Identifier="c3fbf78a-beb7-44f9-8992-86220a926e66" Begin="0.0028533294" End="0.0028533294" SectionCount="1" ReferenceX="0.0841074000" ReferenceY="0.0442976000" FocusStabilizerOffset="0.0000000000" FocusStabilizerOffsetFixed="false" StackValid="true" Marked="true" />
+  </StackList>
+</StageOverviewRegions>

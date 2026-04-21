@@ -25,9 +25,9 @@ class Point:
 	def __post_init__(self):
 		# Convert Fill to a string representation if it's a numpy array
 		if isinstance(self.Fill, np.ndarray):
-			self.Fill = ' ,'.join(map(str, self.Fill.tolist()))
+			self.Fill = f"R:{self.Fill[0]} ,G:{self.Fill[1]} ,B:{self.Fill[2]} ,A:{self.Fill[3]}"
 		elif isinstance(self.Fill, list):
-			self.Fill = ' ,'.join(map(str, self.Fill))
+			self.Fill = f"R:{self.Fill[0]} ,G:{self.Fill[1]} ,B:{self.Fill[2]} ,A:{self.Fill[3]}"
 
 @dataclass
 class CompoundShape:
@@ -42,9 +42,9 @@ class CompoundShape:
 	def __post_init__(self):
 		# Convert Fill to a string representation if it's a numpy array
 		if isinstance(self.Fill, np.ndarray):
-			self.Fill = ' ,'.join(map(str, self.Fill.tolist()))
+			self.Fill = f"R:{self.Fill[0]} ,G:{self.Fill[1]} ,B:{self.Fill[2]} ,A:{self.Fill[3]}"
 		elif isinstance(self.Fill, list):
-			self.Fill = ' ,'.join(map(str, self.Fill))
+			self.Fill = f"R:{self.Fill[0]} ,G:{self.Fill[1]} ,B:{self.Fill[2]} ,A:{self.Fill[3]}"
 
 @dataclass
 class ShapeList:
@@ -122,15 +122,28 @@ def dataclass_to_xml(element: ET.Element, obj: Any, item_index: int = None):
         if field_name.startswith('_'):
             continue
 
-        # Handle lists (e.g., Items, Children, Verticies)
-        if isinstance(field_value, list):
-            items_element = ET.SubElement(element, "Items")
+        # Handle the Children field specifically for CompoundShape
+        if field_name == "Children" and isinstance(obj, CompoundShape):
+            children_element = ET.SubElement(element, "Children")
+            items_element = ET.SubElement(children_element, "Items")
             for i, item in enumerate(field_value):
                 item_element = ET.SubElement(items_element, f"Item{i}")
                 if hasattr(item, '__dataclass_fields__'):
                     dataclass_to_xml(item_element, item)
                 else:
                     item_element.text = str(item)
+
+        # Handle other lists (e.g., Verticies, ExtendedProperties)
+        elif isinstance(field_value, list):
+            items_element = ET.SubElement(element, f"{field_name}")
+            inner_items_element = ET.SubElement(items_element, "Items")
+            for i, item in enumerate(field_value):
+                item_element = ET.SubElement(inner_items_element, f"Item{i}")
+                if hasattr(item, '__dataclass_fields__'):
+                    dataclass_to_xml(item_element, item)
+                else:
+                    item_element.text = str(item)
+
         # Handle nested dataclasses
         elif hasattr(field_value, '__dataclass_fields__'):
             child_element = ET.SubElement(element, field_name)
