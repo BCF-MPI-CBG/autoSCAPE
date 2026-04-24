@@ -1,0 +1,36 @@
+<StageOverviewRegions>
+  <Regions>
+    <ShapeList>
+      <Items>
+        <Item0>
+          <Number>7</Number>
+          <Name>B2</Name>
+          <Tag>P1</Tag>
+          <Identifier>c9da95cd-3c19-4156-f7a1-f1c9897b50b2</Identifier>
+          <Type>Point</Type>
+          <Fill>R:1 ,G: 0,B: 0,A: 0</Fill>
+          <Font />
+          <Verticies>
+            <Items>
+              <Item0>
+                <X>0.01823251146</X>
+                <Y>0.01865569557</Y>
+              </Item0>
+            </Items>
+          </Verticies>
+          <DecoratorColors>
+            <Items />
+          </DecoratorColors>
+          <ExtendedProperties>
+            <Items />
+          </ExtendedProperties>
+        </Item0>
+      </Items>
+      <FillMaskMode>None</FillMaskMode>
+      <VertexUnitMode>Pixels</VertexUnitMode>
+    </ShapeList>
+  </Regions>
+  <StackList>
+    <Entry Identifier="c9da95cd-3c19-4156-f7a1-f1c9897b50b2" Begin="0.0029404943" End="0.0029404943" SectionCount="1" ReferenceX="0.0182346000" ReferenceY="0.0186404000" FocusStabilizerOffset="0.0000000000" FocusStabilizerOffsetFixed="false" StackValid="true" Marked="true" />
+  </StackList>
+</StageOverviewRegions>
