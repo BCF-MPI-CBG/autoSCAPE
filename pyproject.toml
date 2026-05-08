@@ -29,10 +29,19 @@ dependencies = [
     "numpy",
     "scipy",
     "magicgui",
-    "qtpy",
-    "pyqt5",
     "scikit-image",
-    "dicttoxml"
+    "dicttoxml",
+    "napari[all]",
+    "bioio",
+    "bioio-ome-tiff",
+    "ultralytics",
+    "torch",
+    "lightning",
+    "segmentation-models-pytorch",
+    "xmltodict"
+    "albumentations",
+    "napari-clusters-plotter",
+    "zarrs
 ]
 
 [project.optional-dependencies]
@@ -41,13 +50,6 @@ testing = [
     "pytest",  # https://docs.pytest.org/en/latest/contents.html
     "pytest-cov",  # https://pytest-cov.readthedocs.io/en/latest/
     "pytest-qt",  # https://pytest-qt.readthedocs.io/en/latest/
-    "napari",
-    "pyqt6",
-    "bioio",
-    "bioio-ome-tiff",
-    "ultralytics",
-    "torch",
-    "xmltodict"
 ]
 
 [project.entry-points."napari.manifest"]

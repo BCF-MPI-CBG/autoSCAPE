@@ -1,0 +1,253 @@
+<StageOverviewRegions>
+  <Regions>
+    <ShapeList>
+      <Items>
+        <Item0>
+          <Name>B</Name>
+          <Identifier>07d39d8b-7068-4643-0c8f-8a281bc6e529</Identifier>
+          <Type>CompoundShape</Type>
+          <Fill>R:1 ,G: 0,B: 0,A: 0</Fill>
+          <Font />
+          <Verticies>
+            <Items />
+          </Verticies>
+          <DecoratorColors>
+            <Items />
+          </DecoratorColors>
+          <ExtendedProperties>
+            <Items />
+          </ExtendedProperties>
+          <Children>
+            <Items>
+              <Item0>
+                <Name>2</Name>
+                <Identifier>52fed28b-3783-44fd-b481-72a697bb4a77</Identifier>
+                <Type>CompoundShape</Type>
+                <Font />
+                <Verticies>
+                  <Items />
+                </Verticies>
+                <DecoratorColors>
+                  <Items />
+                </DecoratorColors>
+                <ExtendedProperties>
+                  <Items />
+                </ExtendedProperties>
+                <Children>
+                  <Items>
+                    <Item0>
+                      <Number>11</Number>
+                      <Name>P1</Name>
+                      <Tag>P1</Tag>
+                      <Identifier>050c7ca0-b78c-4d61-0381-7b508d7f0f2e</Identifier>
+                      <Type>Point</Type>
+                      <Fill>R:1 ,G: 0,B: 0,A: 0</Fill>
+                      <Font />
+                      <Verticies>
+                        <Items>
+                          <Item0>
+                            <X>0.01965498137</X>
+                            <Y>0.01700905521</Y>
+                          </Item0>
+                        </Items>
+                      </Verticies>
+                      <DecoratorColors>
+                        <Items />
+                      </DecoratorColors>
+                      <ExtendedProperties>
+                        <Items />
+                      </ExtendedProperties>
+                    </Item0>
+                    <Item1>
+                      <Number>13</Number>
+                      <Name>P2</Name>
+                      <Tag>P2</Tag>
+                      <Identifier>87de4da7-65b3-4849-7da2-f36bf768f884</Identifier>
+                      <Type>Point</Type>
+                      <Fill>R:1 ,G: 0,B: 0,A: 0</Fill>
+                      <Font />
+                      <Verticies>
+                        <Items>
+                          <Item0>
+                            <X>0.02057569945</X>
+                            <Y>0.01880027039</Y>
+                          </Item0>
+                        </Items>
+                      </Verticies>
+                      <DecoratorColors>
+                        <Items />
+                      </DecoratorColors>
+                      <ExtendedProperties>
+                        <Items />
+                      </ExtendedProperties>
+                    </Item1>
+                  </Items>
+                </Children>
+              </Item0>
+              <Item1>
+                <Name>3</Name>
+                <Identifier>9946d56e-3f03-46a8-6c8f-8506b8337c6f</Identifier>
+                <Type>CompoundShape</Type>
+                <Font />
+                <Verticies>
+                  <Items />
+                </Verticies>
+                <DecoratorColors>
+                  <Items />
+                </DecoratorColors>
+                <ExtendedProperties>
+                  <Items />
+                </ExtendedProperties>
+                <Children>
+                  <Items>
+                    <Item0>
+                      <Number>15</Number>
+                      <Name>P1</Name>
+                      <Tag>P1</Tag>
+                      <Identifier>450ea6f5-ce81-4d4d-d384-390df104997a</Identifier>
+                      <Type>Point</Type>
+                      <Fill>R:1 ,G: 0,B: 0,A: 0</Fill>
+                      <Font />
+                      <Verticies>
+                        <Items>
+                          <Item0>
+                            <X>0.02819254903</X>
+                            <Y>0.01687513258</Y>
+                          </Item0>
+                        </Items>
+                      </Verticies>
+                      <DecoratorColors>
+                        <Items />
+                      </DecoratorColors>
+                      <ExtendedProperties>
+                        <Items />
+                      </ExtendedProperties>
+                    </Item0>
+                    <Item1>
+                      <Number>17</Number>
+                      <Name>P2</Name>
+                      <Tag>P2</Tag>
+                      <Identifier>b22e323b-3503-4004-4880-00f00d0361de</Identifier>
+                      <Type>Point</Type>
+                      <Fill>R:1 ,G: 0,B: 0,A: 0</Fill>
+                      <Font />
+                      <Verticies>
+                        <Items>
+                          <Item0>
+                            <X>0.03013442717</X>
+                            <Y>0.01925225926</Y>
+                          </Item0>
+                        </Items>
+                      </Verticies>
+                      <DecoratorColors>
+                        <Items />
+                      </DecoratorColors>
+                      <ExtendedProperties>
+                        <Items />
+                      </ExtendedProperties>
+                    </Item1>
+                  </Items>
+                </Children>
+              </Item1>
+            </Items>
+          </Children>
+        </Item0>
+        <Item1>
+          <Name>C</Name>
+          <Identifier>1c031c3f-132b-4cdb-a393-b196c90e2b60</Identifier>
+          <Type>CompoundShape</Type>
+          <Fill>R:1 ,G: 0,B: 0,A: 0</Fill>
+          <Font />
+          <Verticies>
+            <Items />
+          </Verticies>
+          <DecoratorColors>
+            <Items />
+          </DecoratorColors>
+          <ExtendedProperties>
+            <Items />
+          </ExtendedProperties>
+          <Children>
+            <Items>
+              <Item0>
+                <Name>3</Name>
+                <Identifier>7a4b8185-81fb-4982-ac90-ecac3c225452</Identifier>
+                <Type>CompoundShape</Type>
+                <Font />
+                <Verticies>
+                  <Items />
+                </Verticies>
+                <DecoratorColors>
+                  <Items />
+                </DecoratorColors>
+                <ExtendedProperties>
+                  <Items />
+                </ExtendedProperties>
+                <Children>
+                  <Items>
+                    <Item0>
+                      <Number>19</Number>
+                      <Name>P1</Name>
+                      <Tag>P1</Tag>
+                      <Identifier>05597a7c-1dfb-461e-adbd-15f5765a523c</Identifier>
+                      <Type>Point</Type>
+                      <Fill>R:1 ,G: 0,B: 0,A: 0</Fill>
+                      <Font />
+                      <Verticies>
+                        <Items>
+                          <Item0>
+                            <X>0.02886216219</X>
+                            <Y>0.0260823134</Y>
+                          </Item0>
+                        </Items>
+                      </Verticies>
+                      <DecoratorColors>
+                        <Items />
+                      </DecoratorColors>
+                      <ExtendedProperties>
+                        <Items />
+                      </ExtendedProperties>
+                    </Item0>
+                    <Item1>
+                      <Number>21</Number>
+                      <Name>P2</Name>
+                      <Tag>P2</Tag>
+                      <Identifier>4fa43333-94ba-4b23-5cbe-61694ab8a15e</Identifier>
+                      <Type>Point</Type>
+                      <Fill>R:1 ,G: 0,B: 0,A: 0</Fill>
+                      <Font />
+                      <Verticies>
+                        <Items>
+                          <Item0>
+                            <X>0.03020138849</X>
+                            <Y>0.02757220266</Y>
+                          </Item0>
+                        </Items>
+                      </Verticies>
+                      <DecoratorColors>
+                        <Items />
+                      </DecoratorColors>
+                      <ExtendedProperties>
+                        <Items />
+                      </ExtendedProperties>
+                    </Item1>
+                  </Items>
+                </Children>
+              </Item0>
+            </Items>
+          </Children>
+        </Item1>
+      </Items>
+      <FillMaskMode>None</FillMaskMode>
+      <VertexUnitMode>Pixels</VertexUnitMode>
+    </ShapeList>
+  </Regions>
+  <StackList>
+    <Entry Identifier="050c7ca0-b78c-4d61-0381-7b508d7f0f2e" Begin="0.0028943876" End="0.0028943876" SectionCount="1" ReferenceX="0.0292886000" ReferenceY="0.0183426000" FocusStabilizerOffset="0.0000000000" FocusStabilizerOffsetFixed="false" StackValid="true" Marked="true" />
+    <Entry Identifier="05597a7c-1dfb-461e-adbd-15f5765a523c" Begin="0.0028943876" End="0.0028943876" SectionCount="1" ReferenceX="0.0292886000" ReferenceY="0.0183426000" FocusStabilizerOffset="0.0000000000" FocusStabilizerOffsetFixed="false" StackValid="true" Marked="true" />
+    <Entry Identifier="4fa43333-94ba-4b23-5cbe-61694ab8a15e" Begin="0.0028943876" End="0.0028943876" SectionCount="1" ReferenceX="0.0292886000" ReferenceY="0.0183426000" FocusStabilizerOffset="0.0000000000" FocusStabilizerOffsetFixed="false" StackValid="true" Marked="true" />
+    <Entry Identifier="450ea6f5-ce81-4d4d-d384-390df104997a" Begin="0.0028943876" End="0.0028943876" SectionCount="1" ReferenceX="0.0292886000" ReferenceY="0.0183426000" FocusStabilizerOffset="0.0000000000" FocusStabilizerOffsetFixed="false" StackValid="true" Marked="true" />
+    <Entry Identifier="87de4da7-65b3-4849-7da2-f36bf768f884" Begin="0.0028943876" End="0.0028943876" SectionCount="1" ReferenceX="0.0292886000" ReferenceY="0.0183426000" FocusStabilizerOffset="0.0000000000" FocusStabilizerOffsetFixed="false" StackValid="true" Marked="true" />
+    <Entry Identifier="b22e323b-3503-4004-4880-00f00d0361de" Begin="0.0028943876" End="0.0028943876" SectionCount="1" ReferenceX="0.0292886000" ReferenceY="0.0183426000" FocusStabilizerOffset="0.0000000000" FocusStabilizerOffsetFixed="false" StackValid="true" Marked="true" />
+  </StackList>
+</StageOverviewRegions>

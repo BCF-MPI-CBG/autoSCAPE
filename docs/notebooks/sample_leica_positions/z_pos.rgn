@@ -13,8 +13,8 @@
           <Verticies>
             <Items>
               <Item0>
-                <X>0.01823251146</X>
-                <Y>0.01865569557</Y>
+                <X>0.01127720076</X>
+                <Y>0.009352737492</Y>
               </Item0>
             </Items>
           </Verticies>
@@ -31,6 +31,6 @@
     </ShapeList>
   </Regions>
   <StackList>
-    <Entry Identifier="c9da95cd-3c19-4156-f7a1-f1c9897b50b2" Begin="0.0029404943" End="0.0029404943" SectionCount="1" ReferenceX="0.0182346000" ReferenceY="0.0186404000" FocusStabilizerOffset="0.0000000000" FocusStabilizerOffsetFixed="false" StackValid="true" Marked="true" />
+    <Entry Identifier="c9da95cd-3c19-4156-f7a1-f1c9897b50b2" Begin="0.0029182228" End="0.0029182228" SectionCount="1" ReferenceX="0.01127720076" ReferenceY="0.009352737492" FocusStabilizerOffset="0.0000000000" FocusStabilizerOffsetFixed="false" StackValid="true" Marked="true" />
   </StackList>
 </StageOverviewRegions>
