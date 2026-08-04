@@ -38,7 +38,7 @@ dependencies = [
     "torch",
     "lightning",
     "segmentation-models-pytorch",
-    "xmltodict"
+    "xmltodict",
     "albumentations",
     "napari-clusters-plotter",
     "zarrs
