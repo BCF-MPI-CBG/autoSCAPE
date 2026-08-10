@@ -12,11 +12,11 @@ from bioio import BioImage
 import numpy as np
 import xmltodict
 from napari_autoscape._utils import _find_in_nested_dict
-from ome_zarr import NgffImage, NgffMultiscales
+from ome_zarr import OMEZarrImage, OMEZarrMultiscale
 from multiview_stitcher import spatial_image_utils as si_utils
 from multiview_stitcher import fusion
 
-def convert_leica_composite_to_ngff(filename: str) -> NgffMultiscales:
+def convert_leica_composite_to_ngff(filename: str) -> OMEZarrMultiscale:
     bf = BioImage(filename)
     basename = Path(filename).stem.split('.')[0]
 
@@ -80,14 +80,14 @@ def convert_leica_composite_to_ngff(filename: str) -> NgffMultiscales:
     while len(image.shape) < 3:
         image = image[None, ...]
 
-    ngff_image = NgffImage(
+    ngff_image = OMEZarrImage(
         image,
         axes=["z", "y", "x"],
         scale=scale,
         axes_units=axes_units,
         name=basename
     )
-    ngff_multiscales = NgffMultiscales(
+    ngff_multiscales = OMEZarrMultiscale(
         image=ngff_image,
         scale_factors=[
         {"z": 2, "y": 2, "x": 2},
@@ -105,7 +105,7 @@ def convert_single_tile_to_ome_zarr(path):
     import dask.array as da
     import yaml
     from dask_image import imread
-    from ome_zarr.image import NgffImage, NgffMultiscales
+    from ome_zarr.image import OMEZarrImage, OMEZarrMultiscale
     from ome_zarr_models._v06.coordinate_transforms import Translation
 
     # like numpy.mean, but maintains dtype
@@ -154,7 +154,7 @@ def convert_single_tile_to_ome_zarr(path):
         ]
     }
 
-    ngff_image = NgffImage(
+    ngff_image = OMEZarrImage(
         data=array,
         scale={'z': z_scale, 'y': y_scale, 'x': x_scale},
         dims=["z", "y", "x"],
@@ -173,7 +173,7 @@ def convert_single_tile_to_ome_zarr(path):
         )
     )
 
-    ngff_ms = NgffMultiscales(
+    ngff_ms = OMEZarrMultiscale(
         ngff_image,
         coordinateTransformations=[translation]
     )
@@ -193,7 +193,7 @@ def convert_tiles_to_stitched_ome_zarr(path: str):
     from multiview_stitcher import spatial_image_utils as si_utils
     from multiview_stitcher import fusion
 
-    from ome_zarr import NgffImage, NgffMultiscales
+    from ome_zarr import OMEZarrImage, OMEZarrMultiscale
     from ome_zarr_models._v06.coordinate_transforms import Translation, CoordinateSystem, Axis
 
     folders = [os.path.join(path, folder) for folder in os.listdir(path) if os.path.isdir(os.path.join(path, folder))]
@@ -261,7 +261,7 @@ def convert_tiles_to_stitched_ome_zarr(path: str):
         transform_key="stage_metadata"
     ).squeeze().pad(x=1, y=1, constant_values=0)
 
-    ngff_image_overview = NgffImage(
+    ngff_image_overview = OMEZarrImage(
         fused_sim.data[None, :],
         dims=["z", "y", "x"],
         scale={"z": float(z_scale), "y": float(y_scale), "x": float(x_scale)},
@@ -269,7 +269,7 @@ def convert_tiles_to_stitched_ome_zarr(path: str):
         name=Path(path).stem
         )
 
-    ngff_multiscales_overview = NgffMultiscales(
+    ngff_multiscales_overview = OMEZarrMultiscale(
         ngff_image_overview,
         scale_factors=(2, 4, 8, 16, 32)
     )
