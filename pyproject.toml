@@ -34,14 +34,17 @@ dependencies = [
     "napari[all]",
     "bioio",
     "bioio-ome-tiff",
+    "xmltodict",
+    "napari-clusters-plotter",
+    "zarrs",
+]
+
+dl = [
     "ultralytics",
     "torch",
     "lightning",
     "segmentation-models-pytorch",
-    "xmltodict",
     "albumentations",
-    "napari-clusters-plotter",
-    "zarrs
 ]
 
 [project.optional-dependencies]
