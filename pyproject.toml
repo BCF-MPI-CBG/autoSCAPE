@@ -31,7 +31,7 @@ dependencies = [
     "magicgui",
     "scikit-image",
     "dicttoxml",
-    "napari[all]",
+    "napari[all]==0.8.0",
     "bioio",
     "bioio-ome-tiff",
     "xmltodict",
