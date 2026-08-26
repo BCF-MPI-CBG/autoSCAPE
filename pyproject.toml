@@ -45,6 +45,7 @@ dl = [
     "lightning",
     "segmentation-models-pytorch",
     "albumentations",
+    "tensorboard",
 ]
 
 [project.optional-dependencies]
