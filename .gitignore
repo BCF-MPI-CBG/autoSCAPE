@@ -26,7 +26,6 @@ var/
 
 # YOLO & project
 runs/
-*.pt
 *.zarr*
 
 # PyInstaller
