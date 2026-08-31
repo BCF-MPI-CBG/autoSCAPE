@@ -1,12 +1,28 @@
+[build-system]
+requires = ["setuptools>=42.0.0", "wheel", "setuptools_scm"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"*" = ["*.yaml"]
+
+[tool.setuptools_scm]
+write_to = "src/napari_autoscape/_version.py"
+fallback_version = "0.0.1+nogit"
+
 [project]
 name = "napari-autoscape"
 dynamic = ["version"]
 description = "Read, write and process data acquired with SCAPE microscope to speed up acquisition"
 readme = "README.md"
-license = {file = "LICENSE"}
+license = { file = "LICENSE" }
 authors = [
-  {name = "Johannes Soltwedel"},
-  {email = "johannes_richard.soltwedel@tu-dresden.de"},
+    { name = "Johannes Soltwedel", email = "johannes_richard.soltwedel@tu-dresden.de" },
 ]
 classifiers = [
     "Development Status :: 2 - Pre-Alpha",
@@ -39,6 +55,7 @@ dependencies = [
     "zarrs",
 ]
 
+[project.optional-dependencies]
 dl = [
     "ultralytics",
     "torch",
@@ -47,8 +64,6 @@ dl = [
     "albumentations",
     "tensorboard",
 ]
-
-[project.optional-dependencies]
 testing = [
     "tox",
     "pytest",  # https://docs.pytest.org/en/latest/contents.html
@@ -59,27 +74,6 @@ testing = [
 [project.entry-points."napari.manifest"]
 napari-autoscape = "napari_autoscape:napari.yaml"
 
-
-
-[build-system]
-requires = ["setuptools>=42.0.0", "wheel", "setuptools_scm"]
-build-backend = "setuptools.build_meta"
-
-[tool.setuptools]
-include-package-data = true
-
-[tool.setuptools.packages.find]
-where = ["src"]
-
-[tool.setuptools.package-data]
-"*" = ["*.yaml"]
-
-
-[tool.setuptools_scm]
-write_to = "src/napari_autoscape/_version.py"
-fallback_version = "0.0.1+nogit"
-
-
 [tool.black]
 line-length = 79
 target-version = ['py310', 'py311', 'py312', 'py313']
@@ -87,24 +81,23 @@ target-version = ['py310', 'py311', 'py312', 'py313']
 [tool.ruff]
 line-length = 79
 lint.select = [
-    "E", "F", "W", #flake8
-    "UP", # pyupgrade
-    "I", # isort
-    "BLE", # flake8-blind-exception
-    "B", # flake8-bugbear
-    "A", # flake8-builtins
-    "C4", # flake8-comprehensions
-    "ISC", # flake8-implicit-str-concat
-    "G", # flake8-logging-format
-    "PIE", # flake8-pie
-    "SIM", # flake8-simplify
+    "E", "F", "W",  # flake8
+    "UP",  # pyupgrade
+    "I",  # isort
+    "BLE",  # flake8-blind-exception
+    "B",  # flake8-bugbear
+    "A",  # flake8-builtins
+    "C4",  # flake8-comprehensions
+    "ISC",  # flake8-implicit-str-concat
+    "G",  # flake8-logging-format
+    "PIE",  # flake8-pie
+    "SIM",  # flake8-simplify
 ]
 lint.ignore = [
-    "E501", # line too long. let black handle this
-    "UP006", "UP007", # type annotation. As using magicgui require runtime type annotation then we disable this.
-    "SIM117", # flake8-simplify - some of merged with statements are not looking great with black, reanble after drop python 3.9
+    "E501",  # line too long. let black handle this
+    "UP006", "UP007",  # type annotation. As using magicgui require runtime type annotation then we disable this.
+    "SIM117",  # flake8-simplify - some of merged with statements are not looking great with black, reanble after drop python 3.9
 ]
-
 exclude = [
     ".bzr",
     ".direnv",
@@ -126,6 +119,5 @@ exclude = [
     "*vendored*",
     "*_vendor*",
 ]
-
 target-version = "py310"
 fix = true
