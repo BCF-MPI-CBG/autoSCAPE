@@ -13,6 +13,11 @@ from ._widget import (
     create_well_grid,
 )
 from ._writer import write_single_shape
+from .object_detector import (
+    sliding_window_inference,
+    remove_duplicate_detections,
+    extract_features
+)
 
 __all__ = (
     "convert_single_tile_to_ome_zarr",
@@ -21,5 +26,8 @@ __all__ = (
     "tesellate_area",
     "fit_focus_plane",
     "create_well_grid",
+    "sliding_window_inference",
+    "remove_duplicate_detections",
+    "extract_features",
     "__version__",
 )
