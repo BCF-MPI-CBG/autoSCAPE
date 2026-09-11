@@ -12,18 +12,59 @@ from __future__ import annotations
 import json
 from collections.abc import Sequence
 from typing import TYPE_CHECKING, Any, Union
-from napari_autoscape.models.leica import (
-    StageOverviewRegions,
-    CompoundShape,
-    Point,
-    Vertex
-)
 
 import numpy as np
+
+from napari_autoscape.models.leica import (
+    Point,
+    Vertex,
+)
 
 if TYPE_CHECKING:
     DataType = Union[Any, Sequence[Any]]
     FullLayerData = tuple[DataType, dict, str]
+
+
+def _apply_meta_transform(data: Any, meta: dict) -> Any:
+    """Apply napari transform metadata to vertex coordinates."""
+    if not isinstance(data, Sequence) or len(data) == 0:
+        return data
+
+    ndim = meta.get("ndim")
+    if ndim is None:
+        return data
+
+    scale = np.asarray(meta.get("scale", np.ones(ndim)), dtype=float)
+    translate = np.asarray(meta.get("translate", np.zeros(ndim)), dtype=float)
+    affine = meta.get("affine")
+
+    if scale.shape != (ndim,):
+        scale = np.resize(scale, ndim).astype(float)
+    if translate.shape != (ndim,):
+        translate = np.resize(translate, ndim).astype(float)
+
+    transformed_shapes = []
+    for shape in data:
+        arr = np.asarray(shape, dtype=float)
+        if arr.size == 0:
+            transformed_shapes.append(arr)
+            continue
+
+        arr = arr * scale
+        arr = arr + translate
+
+        if affine is not None:
+            affine_matrix = np.asarray(affine, dtype=float)
+            if affine_matrix.shape == (ndim, ndim):
+                arr = arr @ affine_matrix.T
+            elif affine_matrix.shape == (ndim + 1, ndim + 1):
+                hom = np.concatenate([arr, np.ones((arr.shape[0], 1))], axis=1)
+                arr = hom @ affine_matrix.T
+                arr = arr[:, :ndim]
+
+        transformed_shapes.append(arr)
+
+    return transformed_shapes
 
 
 def write_single_shape_leica(path: str, data: Any, meta: dict) -> list[Point]:
@@ -44,35 +85,27 @@ def write_single_shape_leica(path: str, data: Any, meta: dict) -> list[Point]:
         A list of paths that were written.
     """
 
-    ndim = meta['ndim']
-    if not np.all(meta['scale'] == 1):
-        new_shapes = []
-        for shape in data:
-            new_shape = shape.copy()
-            for dim in range(ndim):
-                new_shape[:, dim] *= meta['scale'][dim]
-            new_shapes.append(new_shape)
-        data = new_shapes
+    data = _apply_meta_transform(data, meta)
 
     centers = np.stack([pos.mean(axis=0) for pos in data])
     centers[:, 1] *= -1
 
     points = []
     for i, pos in enumerate(centers):
+        ndim = len(pos)
         if ndim == 3:
             point = Point(
                 Name=f"Point_{i}",
                 Identifier=meta.name,
-                Verticies=[Vertex(Z = pos[0], Y=pos[1], X=pos[2])]
+                Verticies=[Vertex(Z=pos[0], Y=pos[1], X=pos[2])],
             )
         elif ndim == 2:
             point = Point(
                 Name=f"Point_{i}",
                 Identifier=meta.name,
-                Verticies=[Vertex(Y=pos[0], X=pos[1])]
+                Verticies=[Vertex(Y=pos[0], X=pos[1])],
             )
-        
-        
+
         points.append(point)
 
     return points
@@ -96,15 +129,7 @@ def write_single_shape(path: str, data: Any, meta: dict) -> list[str]:
         A list of paths that were written.
     """
 
-    ndim = meta['ndim']
-    if not np.all(meta['scale'] == 1):
-        new_shapes = []
-        for shape in data:
-            new_shape = shape.copy()
-            for dim in range(ndim):
-                new_shape[:, dim] *= meta['scale'][dim]
-            new_shapes.append(new_shape)
-        data = new_shapes
+    data = _apply_meta_transform(data, meta)
 
     centers = np.stack([pos.mean(axis=0) for pos in data])
     centers[:, 1] *= -1
