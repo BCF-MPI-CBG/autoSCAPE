@@ -19,9 +19,6 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    env:
-      # repo is served at <org>.github.io/<repo>, not at the domain root
-      BASE_URL: /${{ github.event.repository.name }}
     steps:
       - uses: actions/checkout@v4
 
