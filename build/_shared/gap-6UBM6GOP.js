@@ -1,1 +1,1 @@
-import{a}from"/myst_assets_folder/_shared/chunk-AGRBV4JI.js";import"/myst_assets_folder/_shared/chunk-RAQ24GF6.js";export default a();
+import{a}from"/build/_shared/chunk-AGRBV4JI.js";import"/build/_shared/chunk-RAQ24GF6.js";export default a();
