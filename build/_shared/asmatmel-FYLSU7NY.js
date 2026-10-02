@@ -1,1 +1,1 @@
-import{a}from"/build/_shared/chunk-SVD6RQPP.js";import"/build/_shared/chunk-RAQ24GF6.js";export default a();
+import{a}from"/autoSCAPE/build/_shared/chunk-SVD6RQPP.js";import"/autoSCAPE/build/_shared/chunk-RAQ24GF6.js";export default a();
