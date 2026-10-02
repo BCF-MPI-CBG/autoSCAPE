@@ -51,21 +51,16 @@ project:
     - file: index.md
     - file: notebooks/convert_ASI_SCAPE.ipynb
     - file: notebooks/convert_leica_SCAPE.ipynb
+    - file: notebooks/train_yolo_model.ipynb
+    - file: notebooks/train_focus_detector.ipynb
     - file: notebooks/paper_screenshots.ipynb
+    - file: notebooks/archive/apply_yolo.ipynb
     - title: Archive
       children:
-        - file: notebooks/archive/apply_yolo.ipynb
         - file: notebooks/archive/01_upload_to_omero.ipynb
-        - file: notebooks/archive/02_download_tiles.ipynb
-        - file: notebooks/archive/03_open_tiles.ipynb
         - file: notebooks/archive/autofocus.ipynb
-        - file: notebooks/archive/convert2omezarr.ipynb
-        - file: notebooks/archive/download_owncloud.ipynb
         - file: notebooks/archive/format_detections.ipynb
         - file: notebooks/archive/plate_conversion_leica.ipynb
-        - file: notebooks/archive/train_focus_detector.ipynb
-        - file: notebooks/archive/train_yolo_model.ipynb
-        - file: notebooks/archive/try_ngio.ipynb
         - file: notebooks/archive/write_leica_pos_file.ipynb
     
 site:
