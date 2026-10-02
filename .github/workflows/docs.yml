@@ -30,10 +30,9 @@ jobs:
 
       - name: Build site
         working-directory: docs
-        env:
-          # repo is served at <org>.github.io/<repo>, not at the domain root
-          BASE_URL: /${{ github.event.repository.name }}
-        run: jupyter book build --html
+        run: |
+          export BASE_URL="/${{ github.event.repository.name }}"
+          jupyter book build --html
 
       - name: Deploy to gh-pages branch
         uses: peaceiris/actions-gh-pages@v4
