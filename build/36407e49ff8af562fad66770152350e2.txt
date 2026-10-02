@@ -1,0 +1,374 @@
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\artists.py:331: UserWarning: Color indices must be integers for categorical colormap. Change `overlay_colormap` to a continuous colormap or set `color_indices` to integers.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(
+c:\Users\Leica-User\miniforge3\envs\autoscape\Lib\site-packages\biaplotter\colormap.py:34: UserWarning: Categorical colormap detected. Setting categorical=True. If the colormap is continuous, set categorical=False explicitly.
+  warnings.warn(

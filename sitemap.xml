@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="http://localhost:3000/sitemap_style.xsl" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>http://localhost:3000</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/convert-asi-scape</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/convert-leica-scape</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/train-yolo-model</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/train-focus-detector</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/paper-screenshots</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/apply-yolo</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/upload-to-omero</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/autofocus</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/format-detections</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/plate-conversion-leica</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/write-leica-pos-file</loc>
+  </url>
+</urlset>
