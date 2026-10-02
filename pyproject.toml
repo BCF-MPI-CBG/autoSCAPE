@@ -70,6 +70,9 @@ testing = [
     "pytest-cov",  # https://pytest-cov.readthedocs.io/en/latest/
     "pytest-qt",  # https://pytest-qt.readthedocs.io/en/latest/
 ]
+docs = [
+    "jupyter-book",
+]
 
 [project.entry-points."napari.manifest"]
 napari-autoscape = "napari_autoscape:napari.yaml"
