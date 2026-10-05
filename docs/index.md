@@ -16,7 +16,10 @@ Additional functionality (used via the Python API and the notebooks in [docs/not
   - YOLO-based sliding-window object detection to find samples/wells in large overview images, with per-detection feature extraction for use with [napari-clusters-plotter].
   - A CNN focus-detection model that automatically predicts the best-focus z-slice for a detected region, as an alternative to manual focus-point fitting.
 
-See the example notebooks in [docs/notebooks](docs/notebooks) for end-to-end ASI/Leica conversion, YOLO detection, and focus-detection workflows.
+## Available workflows
+
+- [Convert ASI SCAPE Acquisitions](#convert-ASI)
+- [Convert LEICA SCAPE ACQUISITIONS](#convert-LEICA)
 
 ## Installation
 
@@ -25,7 +28,9 @@ You can install `autoscape` via [uv]. First clone the repository:
     git clone https://github.com/bcf-mpi-cbg/autoscape.git
     cd autoscape
 
-    uv sync .
+    uv sync
+
+    ./venv/scripts/activate
 
 To use the optional YOLO/focus-detection models, install the `dl` extra:
 
