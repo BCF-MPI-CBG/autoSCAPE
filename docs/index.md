@@ -20,10 +20,10 @@ See the example notebooks in [docs/notebooks](docs/notebooks) for end-to-end ASI
 
 ## Installation
 
-You can install `napari-autoscape` via [uv]. First clone the repository:
+You can install `autoscape` via [uv]. First clone the repository:
 
-    git clone https://github.com/bcf-mpi-cbg/napari-autoscape.git
-    cd napari-autoscape
+    git clone https://github.com/bcf-mpi-cbg/autoscape.git
+    cd autoscape
 
     uv sync .
 
@@ -34,4 +34,4 @@ To use the optional YOLO/focus-detection models, install the `dl` extra:
 ## License
 
 Distributed under the terms of the [BSD-3] license,
-"napari-autoscape" is free and open source software
+"autoscape" is free and open source software
