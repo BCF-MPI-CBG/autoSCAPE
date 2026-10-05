@@ -147,6 +147,128 @@ class FocusModel(pl.LightningModule):
         return optimizer
 
 
+class FocusBottleneckLightningModel(pl.LightningModule):
+    def __init__(self, weights="resnet18", selected_levels=[1, 2], use_pooling=True):
+        super(FocusBottleneckLightningModel, self).__init__()
+        self.selected_levels = selected_levels
+        self.use_pooling = use_pooling
+
+        # Load the pre-trained ResNet18 model
+        unet = smp.Unet(
+            weights,
+            encoder_weights="imagenet",
+            in_channels=1,
+            classes=1,
+            activation=None,
+        )
+
+        # Use the convolutional part as the encoder
+        self.encoder = unet.encoder
+        
+        # Calculate feature dimension dynamically
+        # Get encoder output channels for selected levels
+        # ResNet encoder outputs: [64, 64, 128, 256, 512] for levels 0-4
+        encoder_channels = self.encoder.out_channels
+        self.selected_channels = sum([encoder_channels[i] for i in selected_levels])
+        
+        # Calculate input dimension for FC layers
+        if use_pooling:
+            # With global average pooling, we only need channels as features
+            fc_input_dim = self.selected_channels
+        else:
+            # Without pooling, calculate based on feature map sizes
+            # For a 140x140 input to ResNet18: 
+            # Level 1: 70x70, Level 2: 35x35
+            feature_sizes = [70*70, 35*35]  # Adjust based on your encoder
+            fc_input_dim = sum([encoder_channels[i] * feature_sizes[j] 
+                               for j, i in enumerate(selected_levels)])
+        
+        # Add a bottleneck layer to reduce dimensionality before FC layers
+        bottleneck_dim = 1024
+        self.bottleneck = nn.Sequential(
+            nn.Linear(fc_input_dim, bottleneck_dim),
+            nn.ReLU(),
+            nn.Dropout(0.3)
+        )
+        
+        # Fully connected layers (now much smaller!)
+        self.fc1 = nn.Linear(bottleneck_dim, 256)
+        self.fc2 = nn.Linear(256, 1)
+        
+        # Global average pooling
+        self.global_pool = nn.AdaptiveAvgPool2d(1) if use_pooling else None
+
+        self.criterion = nn.MSELoss()
+        self.log_dict = {}
+        self.log_dict["weights"] = weights
+        
+        # Log parameter count
+        total_params = sum(p.numel() for p in self.parameters())
+        print(f"Total parameters: {total_params:,}")
+        print(f"FC input dimension: {fc_input_dim:,}")
+
+    def forward(self, x):
+        # Get all encoder outputs
+        encoder_outputs = self.encoder(x)
+        
+        # Select only the levels we need
+        selected_features = [encoder_outputs[i] for i in self.selected_levels]
+        
+        # Option 1: Use global average pooling to reduce spatial dimensions
+        if self.use_pooling:
+            pooled_features = [self.global_pool(f).view(f.size(0), -1) for f in selected_features]
+            x = torch.cat(pooled_features, dim=1)
+        else:
+            # Option 2: Flatten directly (less aggressive compression)
+            flattened_features = [f.view(f.size(0), -1) for f in selected_features]
+            x = torch.cat(flattened_features, dim=1)
+        
+        # Pass through bottleneck to reduce dimensionality
+        x = self.bottleneck(x)
+        
+        # Fully connected layers
+        x = F.relu(self.fc1(x))
+        x = self.fc2(x)
+        return x
+
+    def training_step(self, batch, batch_idx):
+        images, labels = batch["image"], batch["label"]
+        outputs = self(images)
+        loss = self.criterion(outputs.squeeze(), labels.float())
+        self.log("train_loss", loss)
+        return {"loss": loss}
+
+    def validation_step(self, batch, batch_idx):
+        images, labels = batch["image"], batch["label"]
+        outputs = self(images)
+        loss = self.criterion(outputs.squeeze(), labels.float())
+
+        if not hasattr(self, "val_outputs"):
+            self.val_outputs = []
+        self.val_outputs.append(
+            {
+                "val_loss": loss,
+            }
+        )
+        return {"val_loss": loss}
+
+    def on_validation_epoch_end(self):
+        avg_loss = torch.stack([x["val_loss"] for x in self.val_outputs]).mean()
+        self.log("val_loss", avg_loss, prog_bar=True)
+
+        # Optionally clear the outputs to free up memory
+        del self.val_outputs
+
+    def test_step(self, batch, batch_idx):
+        images, labels = batch["image"], batch["label"]
+        outputs = self(images)
+        loss = self.criterion(outputs.squeeze(), labels.float())
+        self.log("test_loss", loss)
+
+    def configure_optimizers(self):
+        optimizer = optim.Adam(self.parameters(), lr=0.001)
+        return optimizer
+
 def preprocess_stack(stack):
     augmentations = A.Compose(
         [
