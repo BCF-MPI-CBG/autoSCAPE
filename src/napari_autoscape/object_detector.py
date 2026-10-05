@@ -1,6 +1,59 @@
 import pandas as pd
 import numpy as np
 from skimage import measure
+from ome_zarr.classes import OMEZarrScene
+
+def object_detection_on_scene(scenes: list[OMEZarrScene], model, resolution_level: int) -> "napari.layers.Shapes":
+	import tqdm
+	from napari.layers import Shapes
+	import os
+
+	shapes_layers = []
+	features = pd.DataFrame()
+
+	for scene in scenes:
+		images = scene.images
+		for name, ms in tqdm.tqdm(images.items()):
+			# retrieve translation and multiscales
+			translation = [t for t in scene.metadata.coordinateTransformations if t.input.path == name][0]
+			translate = translation.translation
+			scale=list(ms.images[resolution_level].scale.values())
+
+			projection = ms.images[resolution_level].data.min(axis=0)
+			projection = (projection - projection.min()) / (projection.max() - projection.min()) * 255
+			z0 = translate[0] + ms.images[resolution_level].data.shape[0] * scale[0] / 2
+
+			df_rectangles = sliding_window_inference(projection.compute(), model, window_size=(640, 640), overlap=0.2)
+			df_rectangles = remove_duplicate_detections(df_rectangles, iou_threshold=0.1)
+			df_rectangles = extract_features(projection.compute(), df_rectangles)
+			
+			rectangles = []
+			for _, row in df_rectangles.iterrows():
+				x0 = float(row['x0']) * scale[2] + translation.translation[2]
+				y0 = float(row['y0']) * scale[1] + translation.translation[1]
+				x1 = float(row['x1']) * scale[2] + translation.translation[2] 
+				y1 = float(row['y1']) * scale[1] + translation.translation[1]
+				rectangles.append([(z0, y0, x0), (z0, y0, x1), (z0, y1, x1), (z0, y1, x0)])
+
+			df_rectangles.drop(columns=["x0", "y0", "x1", "y1"], inplace=True)
+			df_rectangles["image_name"] = ms.name
+			df_rectangles["x"] = (x0 + x1) / 2
+			df_rectangles["y"] = (y0 + y1) / 2
+		
+			features = pd.concat([features, df_rectangles], ignore_index=True)
+
+			shapes_layers.append(Shapes(
+					rectangles, shape_type="rectangle", edge_color="red",
+					face_color="transparent", features=df_rectangles, edge_width = 0.00001,
+					name=os.path.basename(ms.name) + "_detections"
+				)
+			)
+
+	# concatenate all shapes layers into one
+	shapes = [shape for layer in shapes_layers for shape in layer.data]
+
+	return Shapes(shapes, features=features, units=list(ms.images[0].axes_units.values()))
+
 
 def yolo_box2rect(box):
 	y_center, x_center, height, width = box
@@ -42,7 +95,7 @@ def sliding_window_inference(image, model, window_size=(640, 640), overlap=0.2):
 			window_norm = (window - window.min()) / (window.max() - window.min() + 1e-8) * 255
 			windows[(y_offset, x_offset)] = window_norm
 
-	predictions = model(list(windows.values()))
+	predictions = model(list(windows.values()), verbose=False)
 	df = pd.DataFrame()
 	for window, prediction in zip(windows.keys(), predictions):
 		y_offset, x_offset = window
