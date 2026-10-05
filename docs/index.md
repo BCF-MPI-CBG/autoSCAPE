@@ -1,40 +1,37 @@
-# autoSCAPE
+# Autoscape
 
-This project provides functionality that converts and processes data acquired with a SCAPE (Swept Confocally-Aligned Planar Excitation) microscope, speeding up high-throughput acquisitions such as multiwell-plate screens.
+Read, write and process data acquired with a SCAPE (Swept Confocally-Aligned Planar Excitation) microscope to speed up acquisition.
 
-The core workflow takes the raw tile images and stage positions written out by the acquisition software (ASI/Micro-Manager or Leica LAS X), stitches the tiles together using their stage coordinates, and writes the result as a multiscale OME-Zarr dataset ready to explore in napari. On top of this conversion pipeline, `autoscape` also provides napari widgets for acquisition planning (tile grids, well grids, focus-plane fitting) and stage-position export, as well as optional deep-learning models for automated region and focus detection.
+----------------------------------
+
+`autoscape` helps plan and automate high-throughput SCAPE acquisitions, for example of multiwell plates. It provides napari widgets for acquisition planning and position-list export, plus library/notebook functions for converting vendor tile/stage data into OME-Zarr and for automatically detecting regions and focus planes with trained models.
+
+## Features
+
+Additional functionality (used via the Python API and the notebooks in [docs/notebooks](docs/notebooks)):
+
+- Conversion of Leica composite/tile-scan data and ASI/Micro-Manager tile stacks + stage position metadata into stitched, multiscale OME-Zarr datasets (using [bioio] and [multiview-stitcher]).
+- Building and serializing Leica LAS X stage-overview region (`.rgn`) files, so detected positions can be re-imported into the acquisition software.
+- Optional deep-learning extras for:
+  - YOLO-based sliding-window object detection to find samples/wells in large overview images, with per-detection feature extraction for use with [napari-clusters-plotter].
+  - A CNN focus-detection model that automatically predicts the best-focus z-slice for a detected region, as an alternative to manual focus-point fitting.
+
+See the example notebooks in [docs/notebooks](docs/notebooks) for end-to-end ASI/Leica conversion, YOLO detection, and focus-detection workflows.
 
 ## Installation
 
-Install `autoscape` with [pip]:
+You can install `napari-autoscape` via [uv]. First clone the repository:
 
-```bash
-pip install autoscape
-```
+    git clone https://github.com/bcf-mpi-cbg/napari-autoscape.git
+    cd napari-autoscape
+
+    uv sync .
 
 To use the optional YOLO/focus-detection models, install the `dl` extra:
 
-```bash
-pip install "autoscape[dl]"
-```
+    uv pip install -e ".[dl]"
 
-## Contents
+## License
 
-Start with the conversion notebooks below to see the end-to-end workflow for turning a raw SCAPE acquisition into a stitched OME-Zarr dataset:
-
-- [Convert ASI SCAPE acquisitions](notebooks/convert_ASI_SCAPE.ipynb)
-- [Convert Leica SCAPE acquisitions](notebooks/convert_leica_SCAPE.ipynb)
-
-Additional notebooks cover downstream analysis built on top of converted data:
-
-- [Apply YOLO detection and autofocus](notebooks/apply_yolo.ipynb)
-- [Paper figures](notebooks/paper_screenshots.ipynb)
-
-## Links
-
-- Source code: [github.com/BCF-MPI-CBG/autoSCAPE](https://github.com/BCF-MPI-CBG/autoSCAPE)
-- Issues: [github.com/BCF-MPI-CBG/autoSCAPE/issues](https://github.com/BCF-MPI-CBG/autoSCAPE/issues)
-
-[napari]: https://napari.org
-[pip]: https://pypi.org/project/pip/
-
+Distributed under the terms of the [BSD-3] license,
+"napari-autoscape" is free and open source software
