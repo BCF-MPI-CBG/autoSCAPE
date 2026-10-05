@@ -39,7 +39,7 @@ classifiers = [
     "Programming Language :: Python :: 3.13",
     "Topic :: Scientific/Engineering :: Image Processing",
 ]
-requires-python = ">=3.10"
+requires-python = ">=3.12"
 dependencies = [
     "multiview-stitcher==0.1.47",
     "numpy",
@@ -69,6 +69,9 @@ testing = [
     "pytest",  # https://docs.pytest.org/en/latest/contents.html
     "pytest-cov",  # https://pytest-cov.readthedocs.io/en/latest/
     "pytest-qt",  # https://pytest-qt.readthedocs.io/en/latest/
+]
+docs = [
+    "jupyter-book",
 ]
 
 [project.entry-points."napari.manifest"]
