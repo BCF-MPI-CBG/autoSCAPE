@@ -6,6 +6,8 @@ Read, write and process data acquired with a SCAPE (Swept Confocally-Aligned Pla
 
 `napari-autoscape` helps plan and automate high-throughput SCAPE acquisitions, for example of multiwell plates. It provides napari widgets for acquisition planning and position-list export, plus library/notebook functions for converting vendor tile/stage data into OME-Zarr and for automatically detecting regions and focus planes with trained models.
 
+![Napari Visualization](./docs/notebooks/images/conversion_result_leica.gif)
+
 ## Features
 
 Additional functionality (used via the Python API and the notebooks in [docs/notebooks](docs/notebooks)):
