@@ -211,3 +211,54 @@ def detect_focus_plane(
     focus_points = np.concatenate((focus_planes[:, None], well_centroids), axis=1)
 
     return focus_points
+
+
+def run_focus_detection(
+        image_layer: "napari.layers.Image",
+        detections: "napari.layers.Shapes",
+        model: FocusLightningModel,
+        crop_size: int = 256,
+        ) -> "napari.layers.Shapes":
+    import tqdm
+    from scipy.optimize import curve_fit
+    from napari.layers import Shapes
+
+    def fit_func(x, a, x0, y0):
+        return y0 + a  * (x-x0)**2
+
+    # find physical center of the stack in z
+    size_stack_z = image_layer.data.shape[0] * image_layer.scale[0]
+    z_center = image_layer.translate[0] + size_stack_z / 2
+
+    new_positions = []
+
+    features = detections.features
+
+    for idx, row in tqdm.tqdm(features.iterrows(), total=features.shape[0]):
+        box = detections.data[idx]
+
+        box_center = box.mean(axis=0)
+        position = (box_center - image_layer.translate) / image_layer.scale
+
+        crop = image_layer.data[0][
+                :,
+                int(position[1] - crop_size // 2):int(position[1] + crop_size // 2),
+                int(position[2] - crop_size // 2):int(position[2] + crop_size // 2),
+            ]
+        
+        if crop.size == 0:
+            continue
+        x = np.linspace(image_layer.translate[0], image_layer.translate[0] + image_layer.data[0].shape[0] * image_layer.scale[0], num=image_layer.data[0].shape[0])
+        offsets = model(preprocess_stack(crop.compute(), random=False)).detach().cpu().numpy().squeeze()
+        params, cov = curve_fit(fit_func, x, offsets, bounds=([0, x.min(), -np.inf], [np.inf, x.max(), np.inf]), p0 = [400000000, z_center, 0])
+        z_pos = params[1]
+
+        features.at[idx, "z_predicted"] = z_pos
+        features.at[idx, "y_motor"] = position[1] * image_layer.scale[1] + image_layer.translate[1]
+        features.at[idx, "x_motor"] = position[2] * image_layer.scale[2] + image_layer.translate[2]
+
+        box_coords = box.copy()
+        box_coords[:, 0] = z_pos
+        new_positions.append(box_coords)
+
+    return Shapes(new_positions, features=features, units=detections.units)
