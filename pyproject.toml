@@ -41,13 +41,13 @@ classifiers = [
 ]
 requires-python = ">=3.12"
 dependencies = [
-    "multiview-stitcher==0.1.47",
+    "multiview-stitcher==0.1.62",
     "numpy",
     "scipy",
     "magicgui",
     "scikit-image",
     "dicttoxml",
-    "napari[all]==0.8.0",
+    "napari[all]==0.9.2",
     "bioio",
     "bioio-ome-tiff",
     "xmltodict",
